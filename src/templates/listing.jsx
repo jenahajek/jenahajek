@@ -23,8 +23,7 @@ class Listing extends React.Component {
           return (
             <Link
               key={`listing-page-${pageNum}`}
-              to={pageNum === 1 ? "/" : `/${pageNum}/`}
-            >
+              to={pageNum === 1 ? "/" : `/${pageNum}/`}>
               {pageNum}
             </Link>
           );

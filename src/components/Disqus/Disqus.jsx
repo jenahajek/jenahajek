@@ -1,3 +1,5 @@
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from "react";
 import ReactDisqusComments from "react-disqus-comments";
 import urljoin from "url-join";
@@ -7,7 +9,7 @@ class Disqus extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toasts: [],
+      toasts: []
     };
     this.notifyAboutComment = this.notifyAboutComment.bind(this);
     this.onSnackbarDismiss = this.onSnackbarDismiss.bind(this);

@@ -48,8 +48,7 @@ class SocialLinks extends Component {
         <LinkedinShareButton
           url={url}
           title={post.title}
-          description={postNode.excerpt}
-        >
+          description={postNode.excerpt}>
           <LinkedinIcon round size={iconSize} />
         </LinkedinShareButton>
         <TelegramShareButton url={url}>

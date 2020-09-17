@@ -6,6 +6,9 @@
     "react/prop-types": "off",
     "react/no-danger": "off",
     "react/jsx-one-expression-per-line": "off",
+    "react/jsx-curly-newline": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-closing-bracket-location": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",
       {

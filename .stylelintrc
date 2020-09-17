@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "stylelint-config-jenahajek"
+  ],
+  "rules": {
+    "indentation": 4,
+    "max-empty-lines": 5
+  }
+}

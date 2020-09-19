@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 
 class PostTags extends Component {
   render() {
-    const { tags } = this.props;
+    const { tags, postType } = this.props;
     return (
       <div className="post-tag-container">
         {tags &&
@@ -12,7 +12,7 @@ class PostTags extends Component {
             <Link
               key={tag}
               style={{ textDecoration: "none" }}
-              to={`/tags/${_.kebabCase(tag)}`}>
+              to={`${postType}/tag/${_.kebabCase(tag)}`}>
               <button type="button">{tag}</button>
             </Link>
           ))}

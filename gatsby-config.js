@@ -23,6 +23,9 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-lodash",
     {
+      resolve: "gatsby-image"
+    },
+    {
       resolve: "gatsby-plugin-sass",
       options: {
         importer: globImporter()
@@ -38,14 +41,29 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "posts",
-        path: `${__dirname}/content/`
+        name: "frontendPosts",
+        path: `${__dirname}/content/frontend-posts`
       }
     },
     {
-      resolve: "gatsby-transformer-remark",
+      resolve: "gatsby-source-filesystem",
       options: {
-        plugins: [
+        name: "books",
+        path: `${__dirname}/content/books`
+      }
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "thoughts",
+        path: `${__dirname}/content/thoughts`
+      }
+    },
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-relative-images`
           },
@@ -62,14 +80,6 @@ module.exports = {
           "gatsby-remark-autolink-headers",
           "gatsby-remark-prismjs"
         ]
-      }
-    },
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        defaultLayouts: {
-          default: require.resolve("./src/layout/index.jsx")
-        }
       }
     },
     {
@@ -125,11 +135,11 @@ module.exports = {
       }
     },
     {
-      resolve: "gatsby-plugin-feed",
+      resolve: "gatsby-plugin-feed-mdx",
       options: {
         setup(ref) {
           const ret = ref.query.site.siteMetadata.rssMetadata;
-          ret.allMarkdownRemark = ref.query.allMarkdownRemark;
+          ret.allMdx = ref.query.allMdx;
           ret.generator = "GatsbyJS Advanced Starter";
           return ret;
         },
@@ -153,7 +163,7 @@ module.exports = {
           {
             serialize(ctx) {
               const { rssMetadata } = ctx.query.site.siteMetadata;
-              return ctx.query.allMarkdownRemark.edges.map(edge => ({
+              return ctx.query.allMdx.edges.map(edge => ({
                 categories: edge.node.frontmatter.tags,
                 date: edge.node.fields.date,
                 title: edge.node.frontmatter.title,
@@ -168,7 +178,7 @@ module.exports = {
             },
             query: `
             {
-              allMarkdownRemark(
+              allMdx(
                 limit: 1000,
                 sort: { order: DESC, fields: [fields___date] },
               ) {

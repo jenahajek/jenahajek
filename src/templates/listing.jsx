@@ -14,27 +14,28 @@ class Listing extends React.Component {
     const nextPage = `/${currentPageNum + 1}/`;
     const isFirstPage = currentPageNum === 1;
     const isLastPage = currentPageNum === pageCount;
+    const { postType } = this.props.data.allMdx.edges[0].node.fields;
 
     return (
       <div className="paging-container">
-        {!isFirstPage && <Link to={prevPage}>Previous</Link>}
+        {!isFirstPage && <Link to={`${postType}/${prevPage}`}>Previous</Link>}
         {[...Array(pageCount)].map((_val, index) => {
           const pageNum = index + 1;
           return (
             <Link
               key={`listing-page-${pageNum}`}
-              to={pageNum === 1 ? "/" : `/${pageNum}/`}>
-              {pageNum}
+              to={pageNum === 1 ? `/${postType}/` : `/${postType}/${pageNum}/`}>
+              {pageNum}-{postType}
             </Link>
           );
         })}
-        {!isLastPage && <Link to={nextPage}>Next</Link>}
+        {!isLastPage && <Link to={`${postType}/${nextPage}`}>Next</Link>}
       </div>
     );
   }
 
   render() {
-    const postEdges = this.props.data.allMarkdownRemark.edges;
+    const postEdges = this.props.data.allMdx.edges;
 
     return (
       <Layout>
@@ -55,8 +56,9 @@ export default Listing;
 
 /* eslint no-undef: "off" */
 export const listingQuery = graphql`
-  query ListingQuery($skip: Int!, $limit: Int!) {
-    allMarkdownRemark(
+  query ListingQuery($postType: String, $skip: Int!, $limit: Int!) {
+    allMdx(
+      filter: { fields: { postType: { eq: $postType } } }
       sort: { fields: [fields___date], order: DESC }
       limit: $limit
       skip: $skip
@@ -65,6 +67,7 @@ export const listingQuery = graphql`
         node {
           fields {
             slug
+            postType
             date
           }
           excerpt

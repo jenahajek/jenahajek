@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { graphql } from "gatsby";
+import Image from "gatsby-image";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import Layout from "../layout";
 // import Disqus from "../components/Disqus/Disqus";
@@ -30,6 +31,19 @@ export default class PostTemplate extends React.Component {
             <title>{`${post.title} | ${config.siteTitle}`}</title>
           </Helmet>
           <SEO postPath={slug} postNode={postNode} postSEO />
+          {post.thumbnail != null ? (
+            <Image
+              fluid={post.thumbnail.sharp.fluid}
+              alt={post.title}
+              className="book-detail__cover"
+            />
+          ) : (
+            "¯_(ツ)_/¯"
+            // <BookCoverFallback
+            //     title={post.frontmatter.title}
+            //     modifier="book-detail__cover"
+            // />
+          )}
           <div>
             <h1>{post.title}</h1>
             {/* <div dangerouslySetInnerHTML={{ __html: postNode.html }} /> */}
@@ -48,17 +62,35 @@ export default class PostTemplate extends React.Component {
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query BlogPostBySlug2($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       body
       timeToRead
       excerpt
       frontmatter {
         title
-        cover
+        subtitle
+        author
         date
+        pageCount
+        status
+        type
+        language
         categories
+        geography
+        period
+        periodDetail
+        genre
+        sport
         tags
+        excerpt
+        thumbnail {
+          sharp: childImageSharp {
+            fluid(maxHeight: 150) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
       }
       fields {
         slug

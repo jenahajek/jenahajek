@@ -1,5 +1,6 @@
 const urljoin = require("url-join");
 const path = require("path");
+const globImporter = require("node-sass-glob-importer");
 const config = require("./data/SiteConfig");
 
 module.exports = {
@@ -21,6 +22,12 @@ module.exports = {
   plugins: [
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-lodash",
+    {
+      resolve: "gatsby-plugin-sass",
+      options: {
+        importer: globImporter()
+      }
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -55,6 +62,14 @@ module.exports = {
           "gatsby-remark-autolink-headers",
           "gatsby-remark-prismjs"
         ]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        defaultLayouts: {
+          default: require.resolve("./src/layout/index.jsx")
+        }
       }
     },
     {

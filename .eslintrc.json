@@ -5,6 +5,7 @@
     "react/prefer-stateless-function": "off",
     "react/prop-types": "off",
     "react/no-danger": "off",
+    "react/jsx-indent": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-curly-newline": "off",
     "react/destructuring-assignment": "off",

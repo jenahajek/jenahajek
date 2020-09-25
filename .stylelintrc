@@ -3,7 +3,13 @@
     "stylelint-config-jenahajek"
   ],
   "rules": {
-    "indentation": 4,
-    "max-empty-lines": 5
+    "max-empty-lines": 5,
+    "string-quotes": 'double',
+    "selector-attribute-operator-space-after": null,
+    "selector-attribute-operator-space-before": null,
+    "rule-empty-line-before": null,
+    "at-rule-empty-line-before": null,
+    "declaration-colon-newline-after": null,
+    "block-closing-brace-newline-after": null
   }
 }

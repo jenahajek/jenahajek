@@ -1,11 +1,11 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { graphql, Link } from "gatsby";
-import Layout from "../layout";
-import PostListing from "../components/PostListing/PostListing";
-import SEO from "../components/SEO/SEO";
+import Layout from "../components/Layout";
+import PostListing from "../components/PostListing";
+import BookListing from "../components/BookListing";
+import SEO from "../components/SEO";
 import config from "../../data/SiteConfig";
-import "./listing.css";
 
 class Listing extends React.Component {
   renderPaging() {
@@ -16,7 +16,7 @@ class Listing extends React.Component {
     const isLastPage = currentPageNum === pageCount;
     const { postType } = this.props.data.allMdx.edges[0].node.fields;
 
-    return (
+    return pageCount > 1 ? (
       <div className="paging-container">
         {!isFirstPage && <Link to={`${postType}/${prevPage}`}>Previous</Link>}
         {[...Array(pageCount)].map((_val, index) => {
@@ -25,26 +25,37 @@ class Listing extends React.Component {
             <Link
               key={`listing-page-${pageNum}`}
               to={pageNum === 1 ? `/${postType}/` : `/${postType}/${pageNum}/`}>
-              {pageNum}-{postType}
+              {pageNum}
             </Link>
           );
         })}
         {!isLastPage && <Link to={`${postType}/${nextPage}`}>Next</Link>}
       </div>
-    );
+    ) : null;
   }
 
   render() {
     const postEdges = this.props.data.allMdx.edges;
-
+    const { postType } = postEdges[0].node.fields;
     return (
       <Layout>
         <div className="listing-container">
-          <div className="posts-container">
-            <Helmet title={config.siteTitle} />
-            <SEO />
-            <PostListing postEdges={postEdges} />
-          </div>
+          <Helmet title={config.siteTitle} />
+          <SEO />
+          {postType === "reads" ? (
+            <>
+              <div className="books-container">
+                <BookListing postEdges={postEdges} />
+              </div>
+            </>
+          ) : (
+            <div className="row">
+              <div className="content-wrapper">
+                <h1>Frontend blog</h1>
+                <PostListing postEdges={postEdges} />
+              </div>
+            </div>
+          )}
           {this.renderPaging()}
         </div>
       </Layout>
@@ -74,7 +85,28 @@ export const listingQuery = graphql`
           timeToRead
           frontmatter {
             title
+            subtitle
+            author
+            date
+            pageCount
+            status
+            type
+            language
+            categories
+            geography
+            period
+            periodDetail
+            genre
+            sport
             tags
+            excerpt
+            thumbnail {
+              sharp: childImageSharp {
+                fluid(maxHeight: 150) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
             cover
             date
           }

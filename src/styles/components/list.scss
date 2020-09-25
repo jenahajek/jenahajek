@@ -1,0 +1,20 @@
+.list {
+  $s: ".list";
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0.125em -0.25em 0.75em -0.25em;
+
+  &__item {
+    margin: 0.25em;
+  }
+
+  &--base {
+    @include type-author;
+  }
+
+  &--tag {
+    #{$s}__item {
+      @include type-tag;
+    }
+  }
+}

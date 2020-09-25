@@ -3,14 +3,14 @@ import { Helmet } from "react-helmet";
 import { graphql } from "gatsby";
 import Image from "gatsby-image";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import Layout from "../layout";
+import Layout from "../components/Layout";
 // import Disqus from "../components/Disqus/Disqus";
-import PostTags from "../components/PostTags/PostTags";
-import SEO from "../components/SEO/SEO";
-import Footer from "../components/Footer/Footer";
+import PostTags from "../components/PostTags";
+import SEO from "../components/SEO";
+import Footer from "../components/Footer";
 import config from "../../data/SiteConfig";
-import "./b16-tomorrow-dark.css";
-import "./post.css";
+import PostNav from "../components/PostNav";
+import BookDetail from "../components/BookDetail";
 
 export default class PostTemplate extends React.Component {
   render() {
@@ -26,11 +26,25 @@ export default class PostTemplate extends React.Component {
 
     return (
       <Layout>
-        <div>
-          <Helmet>
-            <title>{`${post.title} | ${config.siteTitle}`}</title>
-          </Helmet>
-          <SEO postPath={slug} postNode={postNode} postSEO />
+        <Helmet>
+          <title>{`${post.title} | ${config.siteTitle}`}</title>
+        </Helmet>
+        <SEO postPath={slug} postNode={postNode} postSEO />
+        <div className="row">
+          <BookDetail post={post}>
+            <MDXRenderer>{body}</MDXRenderer>
+          </BookDetail>
+        </div>
+        <PostNav
+          forwardsUrl={pageContext.nextSlug}
+          forwardsTitle="&larr; Novější"
+          backUrl="/reads"
+          backTitle="Zpět na výpis"
+          backwardTitle="Starší &rarr;"
+          backwardsUrl={pageContext.prevSlug}
+        />
+
+        {/* <div className="post-book">
           {post.thumbnail != null ? (
             <Image
               fluid={post.thumbnail.sharp.fluid}
@@ -44,17 +58,22 @@ export default class PostTemplate extends React.Component {
             //     modifier="book-detail__cover"
             // />
           )}
-          <div>
-            <h1>{post.title}</h1>
-            {/* <div dangerouslySetInnerHTML={{ __html: postNode.html }} /> */}
-            <MDXRenderer>{body}</MDXRenderer>
-            <div className="post-meta">
-              <PostTags tags={post.tags} postType={postType} />
-            </div>
-            {/* <Disqus postNode={postNode} /> */}
-            <Footer config={config} />
+          <h1>{post.title}</h1>
+          {/* <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
+          <p
+            className="type-perex"
+            dangerouslySetInnerHTML={{
+              __html: post.excerpt
+            }}
+          />
+
+          <MDXRenderer>{body}</MDXRenderer>
+          <div className="post-meta">
+            <PostTags tags={post.tags} postType={postType} />
           </div>
-        </div>
+          {/* <Disqus postNode={postNode} />
+          <Footer config={config} />
+        </div> */}
       </Layout>
     );
   }

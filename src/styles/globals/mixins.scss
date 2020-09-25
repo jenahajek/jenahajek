@@ -1,0 +1,32 @@
+// Get typography properties form type scale
+@mixin type-setting($level) {
+    line-height: line-height($level);
+    font-size: type-scale($level);
+}
+
+//-------------------------
+// Reset default button styling
+//-------------------------
+@mixin button-reset {
+    display: inline-block;
+    border: none;
+    border-radius: 0;
+    background: none;
+    padding: 0;
+    text-align: inherit;
+    line-height: inherit;
+    color: inherit;
+    // font: inherit;
+    appearance: none;
+}
+
+@mixin vhide() {
+    position: absolute;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}

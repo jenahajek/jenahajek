@@ -1,0 +1,113 @@
+.book-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: all 0.3s ease; // todo
+
+  &:hover {
+    transform: scale(1.05);
+    z-index: 1;
+    background: (--c-background-l0);
+
+    // .book-preview__thumbnail {
+    //     box-shadow: 0 0 10px 0 var(--c-shadow);
+    // }
+  }
+}
+
+.book-preview__item {
+  @include respond-to(lg) {
+  }
+  display: flex;
+  flex-direction: column;
+  // perspective: 700px; // animace
+  padding: $spacing-sm; // todo
+  height: 100%; // for correct alignemt
+  // overflow: hidden; // animace
+
+  @include respond-to(sm) {
+    padding: 0.75em 0.5em;
+    // padding: 1.25em;
+  }
+}
+
+.book-preview__thumbnail {
+  position: relative;
+  transform-origin: 25% center;
+  // transform-style: preserve-3d; // animace
+  // transition: all 0.3s ease-in-out; // animace todo transition
+  // keep the same aspect ratio
+  margin-bottom: $spacing-xs;
+  padding-bottom: 150%; // 1
+  width: 100%;
+  // max-height: 240px; // todo
+  height: 0; // 1
+  // overflow: visible !important; // animace todo:
+
+  img {
+    transition: all 0.3s ease; // todo
+    // &::before {
+    //     position: absolute;
+    //     top: 0;
+    //     right: 0;
+    //     bottom: 0;
+    //     left: calc(100% - 10px);
+    //     transform: rotateY(-80deg) translateX(-14px);
+    //     margin: auto;
+    //     background: #ab4747;
+    //     width: 30px;
+    //     // height: 600px;
+    //     content: '';
+    // }
+  }
+
+  // .book-preview:hover & {
+  // transform: rotate3d(10deg, 0, 0);
+  // transform: rotateY(-30deg); // animace
+  // }
+}
+
+.book-preview__desc {
+  position: relative;
+  flex: 1;
+}
+
+.book-preview__title {
+  @include type-scale--2;
+  // height: $spacing-lg; // todo
+  // font-variation-settings: 'wght' 300, 'wdth' 85;
+  text-decoration: none;
+  line-height: 1.2;
+  color: var(--c-text); // todo
+  // font-size: 16px; // todo typo style
+  font-variation-settings: "wght" 500;
+
+  @include respond-to(md) {
+    line-height: 1.2;
+  }
+}
+
+.book-preview__date {
+  text-decoration: none;
+  color: #aaa; // todo
+}
+
+.book-preview__tag-list {
+  display: flex;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-xs;
+}
+
+.book-preview__tag {
+  @include type-scale--2;
+  flex: 0 0 auto;
+  margin-bottom: 2px;
+  background: red;
+  padding: 0 0.5em;
+  text-transform: uppercase;
+  color: white;
+  font-variation-settings: "wght" 500;
+}

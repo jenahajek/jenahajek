@@ -1,0 +1,282 @@
+// =====================================
+// Config Typography
+// =====================================
+//
+// There is a typography setup only in this file.
+// Including mixins etc. is meant to be done in typography.scss
+
+//----------------------------------
+// Font families
+//----------------------------------
+@font-face {
+  font-family: "IBM Plex Sans Var Italic";
+  font-style: italic;
+  src: url("../fonts/IBMPlexSansVar-Italic.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Var Regular";
+  font-style: normal;
+  src: url("../fonts/IBMPlexSansVar-Roman.woff2") format("woff2");
+  font-display: swap;
+}
+
+//----------------------------------
+// Modular scale
+//----------------------------------
+// what is the starting size?
+$type-base-size-sm: 1.25em; // ~ 20px
+$type-base-size-md: 1.5em; // ~ 24px
+// how quickly to scale?
+$ratio-sm: 1.125;
+$ratio-md: 1.2;
+// line height base
+$line-height-sm: 1.5; // in ems, but without unit ~ 24px
+$line-height-md: 1.5; // in ems, but without unit ~ 30px
+
+$type-space: 1.5rem; // height of base line, always same
+$type-space-guidelines: 1.5em; // in ems only for guidelines
+
+// add starting point to the web as custom properties, so it can be manipulated easily
+:root {
+  --typography-base-size: 1em;
+}
+
+// =====================================
+// Responsive Type scale
+// =====================================
+// due to rounding errors i sometimes include specific line-height. At the same time, I am keeping dynamic calculation, because it can come handy again when changing ratio
+
+@mixin type-scale-6 {
+  line-height: ($line-height-sm * 2 / pow($ratio-sm, 6));
+  font-size: pow($ratio-sm, 6) * $type-base-size-sm;
+
+  @include respond-to(md) {
+    // line-height: $line-height-sm * 2 / pow($ratio-md, 6);
+    line-height: 1.08;
+    font-size: pow($ratio-md, 6) * $type-base-size-md;
+  }
+}
+
+@mixin type-scale-5 {
+  line-height: ($line-height-sm * 2 / pow($ratio-sm, 5));
+  // line-height: 1.66679;
+  font-size: pow($ratio-sm, 5) * $type-base-size-sm;
+
+  @include respond-to(md) {
+    line-height: $line-height-md * 2 / pow($ratio-md, 5);
+    line-height: 1.21563;
+    font-size: pow($ratio-md, 5) * $type-base-size-md;
+  }
+}
+
+@mixin type-scale-4 {
+  line-height: ($line-height-sm * 2 / pow($ratio-sm, 4));
+  // line-height: 1.87489;
+  font-size: pow($ratio-sm, 4) * $type-base-size-sm;
+
+  @include respond-to(md) {
+    // line-height: $line-height-md * 2 / pow($ratio-md, 4);
+    line-height: 1.45676;
+    font-size: pow($ratio-md, 4) * $type-base-size-md;
+  }
+}
+
+@mixin type-scale-3 {
+  line-height: ($line-height-sm * 1 / pow($ratio-sm, 3));
+  font-size: pow($ratio-sm, 3) * $type-base-size-sm;
+
+  @include respond-to(md) {
+    line-height: $line-height-sm * 2 / pow($ratio-md, 3);
+    font-size: pow($ratio-md, 3) * $type-base-size-md;
+  }
+}
+
+@mixin type-scale-2 {
+  line-height: ($line-height-sm / pow($ratio-sm, 2));
+  font-size: pow($ratio-sm, 2) * $type-base-size-sm;
+
+  @include respond-to(md) {
+    // line-height: $line-height-sm * 2 / pow($ratio-md, 2);
+    line-height: 2.09333;
+    font-size: pow($ratio-md, 2) * $type-base-size-md;
+  }
+}
+
+@mixin type-scale-1 {
+  line-height: ($line-height-sm / pow($ratio-sm, 1));
+  // line-height: 1.383636364;
+  font-size: pow($ratio-sm, 1) * $type-base-size-sm;
+
+  @include respond-to(md) {
+    // line-height: $line-height-sm / $ratio-md * 2;
+    line-height: 1.5;
+    font-size: pow($ratio-md, 1) * $type-base-size-md;
+  }
+}
+
+@mixin type-scale-0 {
+  line-height: $line-height-sm;
+  font-size: $type-base-size-sm;
+
+  @include respond-to(md) {
+    line-height: $line-height-md;
+    font-size: $type-base-size-md;
+  }
+}
+
+@mixin type-scale--1 {
+  line-height: $line-height-sm / (1 / $ratio-sm);
+  // line-height: 1.6975;
+  font-size: 1 / $ratio-sm * $type-base-size-sm;
+
+  @include respond-to(md) {
+    line-height: $line-height-md / (1 / $ratio-md);
+    line-height: 2.2;
+    font-size: 1 / $ratio-md * $type-base-size-md;
+  }
+}
+
+@mixin type-scale--2 {
+  line-height: $line-height-sm / (1 / $ratio-sm / $ratio-sm);
+  font-size: 1 / $ratio-sm / $ratio-sm * $type-base-size-sm;
+
+  @include respond-to(md) {
+    line-height: $line-height-md / (1 / $ratio-md / $ratio-md);
+    font-size: (1 / $ratio-md / $ratio-md) * $type-base-size-md;
+  }
+}
+
+// Generic Text Styles
+// =====================================
+@mixin type-h0 {
+  @include type-scale-6;
+  margin-bottom: $type-space;
+  font-variation-settings: "wght" 700;
+}
+
+@mixin type-h1 {
+  @include type-scale-5;
+  margin-bottom: $type-space;
+  font-variation-settings: "wght" 700;
+}
+
+@mixin type-h2 {
+  @include type-scale-4;
+  margin-bottom: $type-space;
+  // margin: $spacing-lg 0 $spacing-xs; // rem
+  font-variation-settings: "wght" 700;
+
+  // &:first-child {
+  //   margin-bottom: $spacing-md;
+  // }
+}
+
+@mixin type-h3 {
+  @include type-scale-3;
+  margin-bottom: $type-space;
+  // margin: $spacing-lg 0 $spacing-xs; // rem
+  font-variation-settings: "wght" 300;
+
+  // &:first-child {
+  //   margin-bottom: $spacing-md;
+  // }
+}
+
+@mixin type-h4 {
+  @include type-scale-2;
+  margin-bottom: $type-space;
+  // margin: $spacing-lg 0 $spacing-xs; // rem
+  font-weight: bold;
+  font-variation-settings: "wght" 700;
+}
+
+@mixin type-h5 {
+  @include type-scale-1;
+  margin-bottom: $type-space;
+  // margin: $spacing-lg 0 $spacing-xs; // rem
+  font-variation-settings: "wght" 350;
+
+  // &:first-child {
+  //   margin-bottom: $spacing-md;
+  // }
+}
+
+@mixin type-h6 {
+  @include type-scale--1;
+  margin-bottom: $type-space;
+  // margin: $spacing-lg 0 $spacing-xs; // rem
+  text-transform: uppercase;
+  font-variation-settings: "wght" 700;
+}
+
+@mixin type-longform {
+  @include type-scale-0;
+  // margin: 0 0 $type-space;
+  margin-bottom: $type-space;
+  font-variation-settings: "wdth" 85;
+
+  @include respond-to(md) {
+    font-variation-settings: "wdth" 100;
+  }
+}
+
+@mixin sup {
+  position: relative;
+  top: -0.4em;
+  vertical-align: baseline;
+}
+
+@mixin sub {
+  position: relative;
+  top: 0.4em;
+  vertical-align: baseline;
+}
+
+// Component text styles
+// =====================================
+@mixin type-perex {
+  @include type-scale-1;
+  margin-bottom: $type-space;
+  // font-family: "IBM Plex Sans Var Italic", "Arial", sans-serif; // todo
+  font-variation-settings: "wght" 380;
+
+  @include respond-to(md) {
+    font-variation-settings: "wght" 250;
+  }
+}
+
+@mixin type-author {
+  @include type-scale--1;
+  margin-bottom: $type-space;
+  font-variation-settings: "wght" 500;
+}
+
+@mixin type-tag {
+  @include type-scale--1;
+  display: inline-block;
+  margin-bottom: 1rem;
+  border-radius: 3px; // todo
+  background: var(--tag-bg);
+  padding: 0.1em 0.3em;
+  color: var(--c-text-subtle);
+  font-variation-settings: "wght" 400;
+  // lineheight todo
+
+  @include respond-to(md) {
+    vertical-align: middle;
+    line-height: 1.375;
+  }
+}
+
+// @mixin type-perex {
+//   @include type-scale-1;
+//   margin-bottom: $type-space;
+//   // font-family: 'IBM Plex Sans Var Italic', 'Arial', sans-serif; // todo
+//   font-variation-settings: "wght" 380;
+
+//   @include respond-to(md) {
+//     font-variation-settings: "wght" 250;
+//   }
+// }

@@ -1,0 +1,20 @@
+.site-nav {
+  @include type-scale-0;
+  border-bottom: 1px solid var(--c-border-l2);
+}
+
+.site-nav__list {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.site-nav__item {
+  &:first-child {
+    margin-right: auto;
+  }
+}
+
+.site-nav__link {
+  display: inline-block;
+  padding: 0.5em 0.75em;
+}

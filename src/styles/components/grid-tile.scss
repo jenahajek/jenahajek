@@ -1,0 +1,19 @@
+.grid-tile {
+  grid-template-columns: repeat(auto-fill, minmax(6rem, 50%));
+  grid-template-rows: repeat(auto-fill, minmax(0, 1fr)); // todo
+  display: grid;
+  flex-wrap: wrap;
+
+  @include respond-to(xs) {
+    grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  }
+
+  @include respond-to(sm) {
+    grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+    margin: 0 -0.25em;
+  }
+}

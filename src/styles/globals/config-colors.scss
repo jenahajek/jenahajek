@@ -1,0 +1,108 @@
+// ==========================================================================
+// Colors
+// ==========================================================================
+
+// --------------------------------------------------------------------------
+// Palette
+// --------------------------------------------------------------------------
+$white-94: hsl(218, 27%, 94%);
+$white-92: hsl(218, 27%, 92%);
+$white-88: hsl(219, 28%, 88%);
+$white-72: hsl(219, 28%, 72%);
+
+$gray-60: hsl(219, 16%, 60%);
+
+$gray-36: hsl(220, 16%, 36%);
+$gray-32: hsl(220, 17%, 32%);
+$gray-28: hsl(222, 16%, 28%);
+$gray-22: hsl(220, 16%, 22%);
+$gray-19: hsl(221, 16%, 19%);
+$gray-14: hsl(218, 15%, 14%);
+
+$black-9: hsl(220, 16%, 9%);
+
+$blueish-65: hsl(179, 25%, 65%);
+$blue-67: hsl(193, 43%, 67%);
+$blue-63: hsl(210, 34%, 63%);
+$blue-52: hsl(213, 32%, 52%);
+
+$red: hsl(354, 42%, 56%);
+$orange: hsl(14, 51%, 63%);
+$yellow: rgb(235, 202, 137);
+$green: hsl(92, 28%, 65%);
+$pink: hsl(311, 20%, 63%);
+
+// --------------------------------------------------------------------------
+// Tokens
+// --------------------------------------------------------------------------
+
+// 1. If user selects a theme from menu -> that theme it is! If not,
+// 2. and has light OS schema -> Light theme
+// 1. If user doesn't have any preference -> Dark theme by default
+
+// Dark theme is default or if it is explicitly selected
+:root,
+:root[data-theme="dark"] {
+  --c-shadow: #{$black-9}; // black-9
+  --c-overlay: hsla(220, 16%, 9%, 0.9); // black-9
+  --c-background-l0: #{$gray-19};
+  --c-background-l1: #{$gray-22};
+  --c-background-l2: #{$gray-28};
+  --c-border-l0: #{$gray-14};
+  --c-border-l1: #{$gray-22};
+  --c-border-l2: #{$gray-32};
+  --c-text: #{$white-94};
+  --c-text-subtle: #{$white-88};
+  --c-text-nonessential: #{$white-72};
+  --c-text-shadow: #{$black-9};
+  --c-selected: #{$yellow};
+  --c-link: #{$blue-67};
+  --c-link-hover: #{$blue-52};
+  --c-negative-l3: #{$red};
+  // components
+  --til-dev: #{$yellow};
+  --tag-bg: #{$gray-14};
+  --switch-slider-bg: #{$gray-60};
+  --switch-handle-bg: #{$gray-22};
+}
+
+@mixin lightTheme {
+  --c-shadow: #{$white-72}; // black-9
+  --c-overlay: hsla(218, 27%, 94%, 0.85); // white-94
+  --c-background-l0: #{$white-94};
+  --c-background-l1: #{$white-88};
+  --c-background-l2: #{$white-72};
+  --c-border-l0: #{$gray-60};
+  --c-border-l1: #{$white-72};
+  --c-border-l2: #{$white-88};
+  --c-text: #{$gray-22};
+  --c-text-subtle: #{$gray-60};
+  --c-text-nonessential: #{$gray-28};
+  --c-text-shadow: #{$white-94};
+  --c-selected: #{$red};
+  --c-link: #{$blue-52};
+  --c-link-hover: #{$blue-63};
+  // components
+  --til-dev: #{$yellow};
+  --tag-bg: #{$white-88};
+  --switch-slider-bg: #{$gray-60};
+  --switch-handle-bg: #{$white-94};
+}
+
+// light theme if user selected it
+:root[data-theme="light"] {
+  @include lightTheme;
+}
+
+// light theme if user's OS is set to light
+@media (prefers-color-scheme: light) {
+  :root {
+    @include lightTheme;
+  }
+}
+
+// Colors, which stays the same?
+// $color-primary: $blue-63;
+// $color-link: $color-primary;
+// $color-text-muted: #888;
+// $color-text-disabled: #666;

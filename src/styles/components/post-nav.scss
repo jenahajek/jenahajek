@@ -1,0 +1,30 @@
+.post-nav {
+  @include type-scale-0;
+  display: flex;
+  justify-content: space-between;
+  border: solid var(--c-border-l2);
+  border-width: 1px 0;
+}
+
+.post-nav__link {
+  display: block;
+  flex: 1;
+  padding: $spacing-xl;
+  &:hover,
+  &:focus {
+    background: var(--c-background-l1);
+  }
+}
+
+.post-nav__link--next {
+  border-right: 1px solid var(--c-border-l2);
+}
+
+.post-nav__link--back {
+  text-align: center;
+}
+
+.post-nav__link--prev {
+  border-left: 1px solid var(--c-border-l2);
+  text-align: right;
+}

@@ -1,0 +1,79 @@
+.switch {
+  --switch-width: 46px;
+  --switch-height: 24px;
+  --switch-icon-width: 14px;
+  --switch-inner-gap: 3px;
+  --switch-image-gap: 5px;
+  --switch-handle-size: 18px;
+  display: flex;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  border-bottom: var(--s-border-width) solid var(--c-border-l2);
+  border-left: var(--s-border-width) solid var(--c-border-l2);
+  padding: $spacing-sm;
+
+  input {
+    display: none;
+  }
+}
+
+.switch__label {
+  display: inline-block;
+  position: relative;
+  width: var(--switch-width);
+  height: var(--switch-height);
+}
+
+.switch__slider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: all 0.4s;
+  border-radius: var(--switch-height);
+  background-color: var(--switch-slider-bg);
+  // background-image: url("../images/moon.svg"), url("../images/sun.svg");
+  // background-position: right var(--switch-image-gap) center,
+  // left var(--switch-image-gap) center;
+  background-repeat: no-repeat;
+  background-size: var(--switch-icon-width) var(--switch-height);
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    bottom: var(--switch-inner-gap);
+    left: var(--switch-inner-gap);
+    transition: 0.4s;
+    border-radius: 50%;
+    background-color: var(--switch-handle-bg);
+    width: var(--switch-handle-size);
+    height: var(--switch-handle-size);
+    content: "";
+  }
+}
+
+input:checked + .switch__slider {
+  background-color: var(--switch-slider-bg);
+}
+
+@mixin switch-on-shift {
+  transform: translateX(
+    calc(
+      var(--switch-width) - var(--switch-handle-size) -
+        (var(--switch-inner-gap) * 2)
+    )
+  );
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .switch__slider::before {
+    @include switch-on-shift;
+  }
+}
+
+input:checked + .switch__slider::before {
+  @include switch-on-shift;
+}

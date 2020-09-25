@@ -1,8 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { graphql } from "gatsby";
-import Layout from "../layout";
-import PostListing from "../components/PostListing/PostListing";
+import Layout from "../components/Layout";
+import PostListing from "../components/PostListing";
 import config from "../../data/SiteConfig";
 
 export default class CategoryTemplate extends React.Component {
@@ -16,6 +16,7 @@ export default class CategoryTemplate extends React.Component {
             title={`Posts in category "${category}" | ${config.siteTitle}`}
           />
           <PostListing postEdges={postEdges} />
+          <h1>category</h1>
         </div>
       </Layout>
     );

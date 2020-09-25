@@ -1,0 +1,75 @@
+.book-detail {
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas:
+    "book-cover"
+    "book-title"
+    "book-meta"
+    "book-content";
+  display: grid;
+  // todo 1: article mixin
+  // todo 2: asi globalni pattern
+  margin: 0 auto; // 1
+  padding: $spacing-md; // 2
+  max-width: 40em; // 1; about 80 chars
+
+  @include respond-to(book-xs) {
+    grid-template-columns: minmax(7em, 8em) 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "book-cover book-title"
+      "book-meta book-meta"
+      "book-content book-content";
+  }
+
+  @include respond-to(md) {
+    grid-template-columns: minmax(12em, 16em) minmax(7em, 8em) 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      ". book-title book-title"
+      "book-cover book-content book-content"
+      "book-meta  book-content book-content";
+    align-items: start;
+    max-width: 71em; // 1; about 80 chars + book on the side
+    grid-column-gap: 1em; // todo
+  }
+}
+
+.book-detail__cover {
+  grid-area: book-cover;
+  margin-bottom: $type-space; // as h1
+  // max-width: 200px;
+
+  // @include respond-to(md) {
+  //     position: sticky !important; // override inline style todo
+  //     top: 1em; // todo // Ensuring its attached to the top of the page
+  // }
+}
+
+.book-detail__title {
+  @include type-h1;
+  grid-area: book-title;
+  margin-bottom: $type-space;
+
+  @include respond-to(book-xs) {
+    align-self: end;
+    margin-left: 0.5em; // todo
+  }
+
+  @include respond-to(md) {
+    margin-top: $spacing-xl;
+    margin-left: 0;
+  }
+}
+
+.book-detail__content {
+  grid-area: book-content;
+
+  @include respond-to(book-xs) {
+    max-width: 40em; // 1; about 80 chars
+  }
+}
+
+.book-detail__meta {
+  grid-area: book-meta;
+}

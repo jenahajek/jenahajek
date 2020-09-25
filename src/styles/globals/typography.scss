@@ -1,0 +1,278 @@
+html {
+  box-sizing: border-box;
+  overflow-y: scroll;
+  font-size: var(--typography-base-size);
+}
+
+body {
+  background-color: var(--c-background-l0);
+  text-rendering: optimizeLegibility;
+  word-wrap: break-word;
+  color: var(--c-text);
+  font-family: "arial", "IBM Plex Sans Var Regular", "georgia", serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: normal;
+  font-feature-settings: "kern", "liga", "clig", "calt";
+}
+
+// Common margin-bottom for vertical rhythm.
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+dl,
+fieldset,
+p,
+table,
+pre,
+svg text {
+  // @include type-scale-0;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+a,
+table,
+pre,
+svg text {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+a:not([class=""]) {
+  transition: all 0.3s ease-in-out; // todo
+  text-decoration: none;
+  color: var(--c-link);
+
+  &:hover,
+  &:focus {
+    color: var(--c-link-hover);
+  }
+}
+
+ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+// =====================================
+// Applying styles to context
+// and preparing typo utility classes
+// =====================================
+
+.type-h0 {
+  @include type-h0;
+}
+
+h1:not([class]),
+// h1[class^='u-'],
+.type-h1 {
+  @include type-h1;
+}
+
+h2:not([class]),
+// h2[class^='u-'],
+.type-h2 {
+  @include type-h2;
+}
+
+h3:not([class]),
+// h3[class^='u-'],
+.type-h3 {
+  @include type-h3;
+}
+
+h4:not([class]),
+// h4[class^='u-'],
+.type-h4 {
+  @include type-h4;
+}
+
+h5:not([class]),
+// h5[class^='u-'],
+.type-h5 {
+  @include type-h5;
+}
+
+h6:not([class]),
+// h6[class^='u-'],
+.type-h6 {
+  @include type-h6;
+}
+.type-perex {
+  @include type-perex;
+}
+p:not([class]) {
+  // p[class^='u-'], {
+  @include type-longform;
+}
+strong:not([class]) {
+  font-variation-settings: "wght" 700;
+}
+
+a:not([class]) {
+  transition: all 0.3s ease-in-out; // todo
+  color: var(--c-link);
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+del:not([class]) {
+  opacity: 0.75; // todo
+  text-decoration: line-through;
+}
+
+ins:not([class]) {
+  text-decoration: none;
+}
+
+sup:not([class]) {
+  @include sup;
+}
+
+sub:not([class]) {
+  @include sub;
+}
+
+cite:not([class]),
+dfn:not([class]) {
+  // font-family: "IBM Plex Sans Var Italic", "Arial", sans-serif; // todo
+}
+
+mark:not([class]) {
+  background-color: rgba(250, 255, 0, 0.25); // todo
+  color: #fff;
+}
+
+kbd:not([class]) {
+  @include type-scale--2;
+  display: inline-block;
+  margin-top: -2px; // border- correction vertical rhythm
+  border: 1px solid var(--c-border-l2); // todo
+  border-radius: 3px; // todo
+  background: var(--c-background-l1); // todo
+  padding: 0 0.4em;
+  min-width: 36px; // todo
+  vertical-align: bottom;
+  text-align: center;
+  line-height: 34px !important;
+}
+
+code:not([class]) {
+  @include type-scale--2;
+  border: 1px solid var(--c-border-l2); // todo
+  border-radius: 3px; // todo
+  background: var(--c-background-l1); // todo
+  padding: 0.1em 0.25em;
+  line-height: inherit;
+  // vertical-align: bottom;
+  color: var(--c-text);
+  @include respond-to(md) {
+    line-height: inherit;
+  }
+}
+
+ul:not([class]) {
+  @include type-scale-0;
+  margin: 0 0 $type-space 0;
+  padding-left: $type-space;
+  list-style-type: disc;
+
+  // @include respond-to(md) {
+  //     padding-left: 0;
+  // }
+}
+
+ol:not([class]) {
+  @include type-scale-0;
+  margin: 0 0 $type-space 0;
+  padding-left: $type-space;
+
+  // @include respond-to(md) {
+  //     padding-left: 0;
+  // }
+}
+
+dl:not([class]) {
+  @include type-scale-0;
+  margin: 0 0 $type-space 0;
+}
+
+blockquote:not([class]) {
+  position: relative;
+  margin: $spacing-xl $spacing-xl;
+  margin: $spacing-lg $spacing-md;
+  line-height: 1.5; // todo
+
+  p {
+    @include type-perex;
+  }
+
+  > p:first-child {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      left: -0.55em;
+      opacity: 1;
+      content: "\201E";
+    }
+  }
+
+  > p:last-of-type {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      opacity: 1;
+      content: "\201C";
+    }
+  }
+
+  cite {
+    display: block;
+    text-align: right;
+  }
+}
+
+hr:not([class]) {
+  margin: $type-space auto;
+  margin: $type-space auto $type-space auto;
+  border: 0;
+  background-color: rgba(127, 127, 127, 0.8); // todo
+  width: 80%;
+  max-width: 30em;
+  height: 1px;
+}
+
+// =====================================
+// WYSIWYG styles
+// =====================================
+.user-content > {
+  // style user text, but not nested components
+  // :first-child {
+  //   margin-top: 0;
+  // }
+
+  // :last-child {
+  //   margin-bottom: 0;
+  // }
+
+  h2 + h3,
+  h3 + h4,
+  h4 + h5,
+  h5 + h6 {
+    margin-top: $spacing-md;
+  }
+}

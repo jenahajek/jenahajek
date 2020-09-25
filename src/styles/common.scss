@@ -1,0 +1,104 @@
+@charset 'UTF-8';
+
+// =====================================
+// Section comment block
+// =====================================
+
+// Sub-section comment block
+// =====================================
+
+/**
+ * Short description using Doxygen-style comment format
+ *
+ * The first sentence of the long description starts here and continues on this
+ * line for a while finally concluding here at the end of this paragraph.
+ *
+ * The long description is ideal for more detailed explanations and
+ * documentation. It can include example HTML, URLs, or any other information
+ * that is deemed necessary or useful.
+ *
+ * @tag This is a tag named 'tag'
+ *
+ * TODO: This is a todo statement that describes an atomic task to be completed
+ *   at a later date. It wraps after 80 characters and following lines are
+ *   indented by 2 spaces.
+ */
+
+/* Basic comment */
+
+// =====================================
+// Settings
+// =====================================
+@import "globals/support";
+
+// =====================================
+// Reset
+// =====================================
+@import "globals/normalize";
+
+// =====================================
+// Globals
+// =====================================
+@import "globals/typography";
+@import "globals/layout";
+@import "globals/base";
+
+// Guidelines for vertical rhythm
+// :root:not([data-guidelines="off"]) {
+//   body {
+//     position: relative;
+
+//     .user-content > * {
+//       background: darkslategray;
+//     }
+
+//     &::before {
+//       position: absolute;
+//       top: 0;
+//       right: 0;
+//       bottom: 0;
+//       left: 0;
+//       opacity: 1;
+//       z-index: 1000;
+//       background: repeating-linear-gradient(
+//         rgba(250, 255, 0, 0.25) 0,
+//         rgba(250, 255, 0, 0.25) 1px,
+//         transparent 1px,
+//         transparent ($type-space-guidelines / 2),
+//         rgba(255, 0, 0, 0.5) ($type-space-guidelines / 2),
+//         rgba(255, 0, 0, 0.5)
+//           (
+//             ($type-space-guidelines / 2) +
+//               ($type-space-guidelines / (1 * $line-height-sm))/16
+//           ),
+//         transparent
+//           (
+//             ($type-space-guidelines / 2) +
+//               ($type-space-guidelines / (1 * $line-height-sm))/16
+//           ),
+//         transparent $type-space-guidelines
+//       );
+//       content: "";
+//       pointer-events: none;
+
+//       @include respond-to(md) {
+//         background: repeating-linear-gradient(
+//           rgba(255, 0, 221, 0.5) 0,
+//           rgba(255, 0, 221, 0.5) 1px,
+//           transparent 1px,
+//           transparent ($type-base-size-md / 2),
+//           rgba(0, 174, 255, 0.25) ($type-base-size-md / 2),
+//           rgba(0, 174, 255, 0.25) calc((#{$type-base-size-md} / 2) + 1px),
+//           transparent calc((#{$type-base-size-md} / 2) + 1px),
+//           transparent $type-base-size-md
+//         );
+//       }
+//     }
+//   }
+// }
+.styleguide {
+  margin: 0 auto;
+  padding: 6rem 0;
+  max-width: 880px;
+}
+@import "globals/shame";

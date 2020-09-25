@@ -1,0 +1,13 @@
+// type-space = 1.5rem
+$spacing-xs: $type-space / 2;
+$spacing-sm: $type-space / 1.5;
+$spacing-md: $type-space;
+$spacing-lg: $type-space * 1.5;
+$spacing-xl: $type-space * 2;
+
+$menu-width: 18em;
+$menu-toggle-width: 4.5em;
+
+:root {
+    --s-border-width: 1px;
+}

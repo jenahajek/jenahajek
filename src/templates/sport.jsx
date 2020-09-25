@@ -15,8 +15,9 @@ export default class TagTemplate extends React.Component {
       <Layout>
         <div className="row">
           <Helmet title={`Posts tagged as "${tag}" | ${config.siteTitle}`} />
-          <h1>Příspěvky se štítkem {tag}</h1>
+          <h2>aaaa</h2>
           <PostListing postEdges={postEdges} />
+          <h1>tag</h1>
         </div>
         <PostNav backUrl={`/${postType}`} backTitle="Zpět na výpis" />
       </Layout>
@@ -26,12 +27,12 @@ export default class TagTemplate extends React.Component {
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query TagPage($tag: String, $postType: String) {
+  query SportPage($sport: String, $postType: String) {
     allMdx(
       limit: 1000
       sort: { fields: [fields___date], order: DESC }
       filter: {
-        frontmatter: { tags: { in: [$tag] } }
+        frontmatter: { sport: { in: [$sport] } }
         fields: { postType: { eq: $postType } }
       }
     ) {
@@ -47,7 +48,7 @@ export const pageQuery = graphql`
           timeToRead
           frontmatter {
             title
-            tags
+            sport
             cover
             date
           }

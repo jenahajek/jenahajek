@@ -1,0 +1,28 @@
+@function pow($base, $exponents) {
+    $raised: 1;
+
+    @for $i from 1 through $exponents {
+        $raised: $raised * $base;
+    }
+
+    @return $raised;
+}
+
+// Get properties from typography scale map (config-typograpohy)
+@function type-scale($level) {
+    @return map-get(map-get($type-settings, $level), 'font-size');
+}
+
+@function line-height($level) {
+    @return map-get(map-get($type-settings, $level), 'line-height');
+}
+
+// layer function
+@function layer($name) {
+    @if map-has-key($layer, $name) {
+        @return map-get($layer, $name);
+    }
+
+    @warn 'The key #{$name} is not in the map ’$layer’';
+    @return null;
+}

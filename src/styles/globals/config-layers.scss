@@ -1,0 +1,17 @@
+// --------------------------
+// Z-indexes
+// --------------------------
+// In order to avoid z-index wars, it is good to keep track of z-indexed used
+// and their value. It is not a silver bullet, but can help significantly.
+//
+// Please update documentation accordingly
+
+$layer: (
+  site-menu-toggle: 1000
+);
+
+// Example usage
+// --------------------------
+// .example {
+//   z-index: layer(dropdown);
+// }

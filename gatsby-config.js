@@ -59,13 +59,13 @@ module.exports = {
         path: `${__dirname}/content/books`
       }
     },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "thoughts",
-        path: `${__dirname}/content/thoughts`
-      }
-    },
+    // {
+    //   resolve: "gatsby-source-filesystem",
+    //   options: {
+    //     name: "thoughts",
+    //     path: `${__dirname}/content/thoughts`
+    //   }
+    // },
     {
       resolve: "gatsby-plugin-mdx",
       options: {

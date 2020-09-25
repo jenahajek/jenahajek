@@ -57,6 +57,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       subtitle: String
       thumbnail: File
       author: [String]
+      publishedDate: Date
       date: Date
       pageCount: Int
       status: [String]
@@ -70,6 +71,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       sport: [String]
       tags: [String]
       excerpt: String
+      cover: ID
     }
   `;
   createTypes(typeDefs);
@@ -80,6 +82,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const postTemplate = path.resolve("src/templates/post.jsx");
   const bookTemplate = path.resolve("src/templates/post-book.jsx");
   const tagPage = path.resolve("src/templates/tag.jsx");
+  const sportPage = path.resolve("src/templates/sport.jsx");
   const categoryPage = path.resolve("src/templates/category.jsx");
   const listingPage = path.resolve("./src/templates/listing.jsx");
   // const landingPage = path.resolve("./src/templates/landing.jsx");
@@ -182,6 +185,8 @@ exports.createPages = async ({ graphql, actions }) => {
 
   postTypesList.forEach(postTypeItem => {
     const tagSet = new Set();
+    const sportSet = new Set();
+    const periodSet = new Set();
     const categorySet = new Set();
 
     const posts = queryResults.data[postTypeItem].edges;
@@ -246,6 +251,28 @@ exports.createPages = async ({ graphql, actions }) => {
         });
       }
 
+      if (edge.node.frontmatter.sport) {
+        const { postType } = edge.node.fields;
+        edge.node.frontmatter.sport.forEach(sport => {
+          const sportObj = {
+            sport,
+            postType
+          };
+          sportSet.add(sportObj);
+        });
+      }
+
+      if (edge.node.frontmatter.period) {
+        const { postType } = edge.node.fields;
+        edge.node.frontmatter.period.forEach(period => {
+          const periodObj = {
+            period,
+            postType
+          };
+          periodSet.add(periodObj);
+        });
+      }
+
       // Generate a list of categories
       if (edge.node.frontmatter.categories) {
         const { postType } = edge.node.fields;
@@ -259,8 +286,8 @@ exports.createPages = async ({ graphql, actions }) => {
       }
 
       // Create post pages
-      const nextID = index + 1 < posts.length ? index + 1 : 0;
-      const prevID = index - 1 >= 0 ? index - 1 : posts.length - 1;
+      const nextID = index - 1 >= 0 ? index - 1 : posts.length - 1;
+      const prevID = index + 1 < posts.length ? index + 1 : 0;
       const nextEdge = posts[nextID];
       const prevEdge = posts[prevID];
       const { postType } = edge.node.fields;
@@ -279,10 +306,10 @@ exports.createPages = async ({ graphql, actions }) => {
         component: currentPostTemplate,
         context: {
           slug: edge.node.fields.slug,
-          nexttitle: nextEdge.node.frontmatter.title,
-          nextslug: nextEdge.node.fields.slug,
-          prevtitle: prevEdge.node.frontmatter.title,
-          prevslug: prevEdge.node.fields.slug
+          nextTitle: nextEdge.node.frontmatter.title,
+          nextSlug: `${prevEdge.node.fields.postType}/${nextEdge.node.fields.slug}`,
+          prevTitle: prevEdge.node.frontmatter.title,
+          prevSlug: `${nextEdge.node.fields.postType}/${prevEdge.node.fields.slug}`
         }
       });
     });
@@ -293,6 +320,22 @@ exports.createPages = async ({ graphql, actions }) => {
         path: `${tagObj.postType}/tag/${_.kebabCase(tagObj.tag)}/`,
         component: tagPage,
         context: tagObj
+      });
+    });
+
+    sportSet.forEach(sportObj => {
+      createPage({
+        path: `${sportObj.postType}/sport/${_.kebabCase(sportObj.sport)}/`,
+        component: sportPage,
+        context: sportObj
+      });
+    });
+
+    periodSet.forEach(periodObj => {
+      createPage({
+        path: `${periodObj.postType}/period/${_.kebabCase(periodObj.period)}/`,
+        component: sportPage,
+        context: periodObj
       });
     });
 

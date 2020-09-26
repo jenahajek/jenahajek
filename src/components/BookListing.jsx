@@ -84,7 +84,7 @@ class BookListing extends React.Component {
     return (
       <>
         {postGroups.map(postGroup => (
-          <>
+          <div key={postGroup}>
             <BookshelfTitle title={postList[postGroup].label} />
             {postList[postGroup].posts.length !== 0 ? (
               <GridTile>
@@ -97,7 +97,7 @@ class BookListing extends React.Component {
               <p>V téhle kolonce teď nic není...</p>
               // </Message>
             )}
-          </>
+          </div>
         ))}
       </>
     );

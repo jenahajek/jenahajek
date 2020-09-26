@@ -38,7 +38,7 @@ export default class PostTemplate extends React.Component {
         <PostNav
           forwardsUrl={pageContext.nextSlug}
           forwardsTitle="&larr; Novější"
-          backUrl="/reads"
+          backUrl="reads"
           backTitle="Zpět na výpis"
           backwardTitle="Starší &rarr;"
           backwardsUrl={pageContext.prevSlug}

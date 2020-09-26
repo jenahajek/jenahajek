@@ -8,7 +8,7 @@ import Image from "gatsby-image";
 const BookPreview = ({ post }) => {
   return (
     <Link
-      to={`${post.postType}/${post.slug}`}
+      to={`/${post.postType}/${post.slug}`}
       key={post.title}
       className="book-preview">
       <article className="book-preview__item">

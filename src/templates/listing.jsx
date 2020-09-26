@@ -18,7 +18,7 @@ class Listing extends React.Component {
 
     return pageCount > 1 ? (
       <div className="paging-container">
-        {!isFirstPage && <Link to={`${postType}/${prevPage}`}>Previous</Link>}
+        {!isFirstPage && <Link to={`/${postType}/${prevPage}`}>Previous</Link>}
         {[...Array(pageCount)].map((_val, index) => {
           const pageNum = index + 1;
           return (
@@ -29,7 +29,7 @@ class Listing extends React.Component {
             </Link>
           );
         })}
-        {!isLastPage && <Link to={`${postType}/${nextPage}`}>Next</Link>}
+        {!isLastPage && <Link to={`/${postType}/${nextPage}`}>Next</Link>}
       </div>
     ) : null;
   }

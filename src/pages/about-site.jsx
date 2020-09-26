@@ -90,6 +90,14 @@ class AboutPage extends Component {
                 <li>na hrubo jsem to celé nastyloval</li>
                 <li>nastavil jsem deploy přes netlify</li>
               </ul>
+
+              <h3>26. 09. 2020</h3>
+              <ul>
+                <li>
+                  Přidal jsem generování stránek pro kategorie a tagy&hellip;
+                </li>
+                <li>&hellip; a opravil nějaké drobnosti</li>
+              </ul>
             </div>
           </div>
         </div>

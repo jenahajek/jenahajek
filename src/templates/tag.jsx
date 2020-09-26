@@ -8,17 +8,21 @@ import PostNav from "../components/PostNav";
 
 export default class TagTemplate extends React.Component {
   render() {
-    const { tag } = this.props.pageContext;
-    const postEdges = this.props.data.allMdx.edges;
+    const { tag, tagType } = this.props.pageContext;
+    const postEdges = this.props.data[tagType].edges;
     const { postType } = postEdges[0].node.fields;
     return (
       <Layout>
         <div className="row">
-          <Helmet title={`Posts tagged as "${tag}" | ${config.siteTitle}`} />
-          <h1>Příspěvky se štítkem {tag}</h1>
-          <PostListing postEdges={postEdges} />
+          <div className="content-wrapper">
+            <Helmet
+              title={`Příspěvky se štítkem "${tag}" | ${config.siteTitle}`}
+            />
+            <h1>Příspěvky se štítkem {tag}</h1>
+            <PostListing postEdges={postEdges} />
+          </div>
         </div>
-        <PostNav backUrl={`/${postType}`} backTitle="Zpět na výpis" />
+        <PostNav backUrl={`${postType}`} backTitle="Zpět na výpis" />
       </Layout>
     );
   }
@@ -26,8 +30,135 @@ export default class TagTemplate extends React.Component {
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query TagPage($tag: String, $postType: String) {
-    allMdx(
+  query TagPage(
+    $geography: String
+    $period: String
+    $periodDetail: String
+    $genre: String
+    $sport: String
+    $tag: String
+    $postType: String
+  ) {
+    geographyTags: allMdx(
+      limit: 1000
+      sort: { fields: [fields___date], order: DESC }
+      filter: {
+        frontmatter: { geography: { in: [$geography] } }
+        fields: { postType: { eq: $postType } }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          fields {
+            slug
+            postType
+          }
+          excerpt
+          timeToRead
+          frontmatter {
+            title
+            geography
+          }
+        }
+      }
+    }
+    periodTags: allMdx(
+      limit: 1000
+      sort: { fields: [fields___date], order: DESC }
+      filter: {
+        frontmatter: { period: { in: [$period] } }
+        fields: { postType: { eq: $postType } }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          fields {
+            slug
+            postType
+          }
+          excerpt
+          timeToRead
+          frontmatter {
+            title
+            period
+          }
+        }
+      }
+    }
+    periodDetailTags: allMdx(
+      limit: 1000
+      sort: { fields: [fields___date], order: DESC }
+      filter: {
+        frontmatter: { periodDetail: { in: [$periodDetail] } }
+        fields: { postType: { eq: $postType } }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          fields {
+            slug
+            postType
+          }
+          excerpt
+          timeToRead
+          frontmatter {
+            title
+            periodDetail
+          }
+        }
+      }
+    }
+    genreTags: allMdx(
+      limit: 1000
+      sort: { fields: [fields___date], order: DESC }
+      filter: {
+        frontmatter: { genre: { in: [$genre] } }
+        fields: { postType: { eq: $postType } }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          fields {
+            slug
+            postType
+          }
+          excerpt
+          timeToRead
+          frontmatter {
+            title
+            genre
+          }
+        }
+      }
+    }
+    sportTags: allMdx(
+      limit: 1000
+      sort: { fields: [fields___date], order: DESC }
+      filter: {
+        frontmatter: { sport: { in: [$sport] } }
+        fields: { postType: { eq: $postType } }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          fields {
+            slug
+            postType
+          }
+          excerpt
+          frontmatter {
+            title
+            sport
+          }
+        }
+      }
+    }
+    tags: allMdx(
       limit: 1000
       sort: { fields: [fields___date], order: DESC }
       filter: {

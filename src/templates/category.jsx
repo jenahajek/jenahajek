@@ -11,12 +11,16 @@ export default class CategoryTemplate extends React.Component {
     const postEdges = this.props.data.allMdx.edges;
     return (
       <Layout>
-        <div className="category-container">
-          <Helmet
-            title={`Posts in category "${category}" | ${config.siteTitle}`}
-          />
-          <PostListing postEdges={postEdges} />
-          <h1>category</h1>
+        <div className="row">
+          <div className="content-wrapper">
+            <div className="category-container">
+              <Helmet
+                title={`Příspěvky v kategorii "${category}" | ${config.siteTitle}`}
+              />
+              <h1>Příspěvky v kategorii: {category}</h1>
+              <PostListing postEdges={postEdges} />
+            </div>
+          </div>
         </div>
       </Layout>
     );

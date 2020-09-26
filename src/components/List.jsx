@@ -10,11 +10,11 @@ const List = ({ items, type, urlSlug }) => {
     <ul className={`list ${variant}`}>
       {items.map((item, i) => (
         <li key={i} className="list__item">
-          {/* {urlSlug !== null ? (
+          {urlSlug !== undefined ? (
             <Link to={`${urlSlug}/${_.kebabCase(item)}`}>{item}</Link>
-          ) : ( */}
-          {item}
-          {/* )} */}
+          ) : (
+            item
+          )}
         </li>
       ))}
     </ul>

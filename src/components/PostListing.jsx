@@ -8,12 +8,12 @@ class PostListing extends React.Component {
       postList.push({
         postType: postEdge.node.fields.postType,
         slug: postEdge.node.fields.slug,
-        tags: postEdge.node.frontmatter.tags,
-        cover: postEdge.node.frontmatter.cover,
+        // tags: postEdge.node.frontmatter.tags,
+        // cover: postEdge.node.frontmatter.cover,
         title: postEdge.node.frontmatter.title,
-        date: postEdge.node.fields.date,
-        excerpt: postEdge.node.excerpt,
-        timeToRead: postEdge.node.timeToRead
+        // date: postEdge.node.fields.date,
+        excerpt: postEdge.node.excerpt
+        // timeToRead: postEdge.node.timeToRead
       });
     });
     return postList;
@@ -25,12 +25,12 @@ class PostListing extends React.Component {
       <div>
         {/* Your post list here. */
         postList.map(post => (
-          <>
-            <Link to={`${post.postType}/${post.slug}`} key={post.title}>
+          <div key={post.title}>
+            <Link to={`/${post.postType}${post.slug}`}>
               <h2 className="type-h4">{post.title}</h2>
             </Link>
             <p>{post.excerpt}</p>
-          </>
+          </div>
         ))}
       </div>
     );

@@ -37,22 +37,20 @@ const BookDetail = ({ post, children }) => {
         {children}
       </div>
       <aside className="book-detail__meta">
-        <p>{post.author != null ? <List items={post.author} /> : null}</p>
+        {post.author != null ? <List items={post.author} /> : null}
 
         {post.categories != null ? (
-          <List items={post.categories} type="tag" />
+          <List urlSlug="/reads/category/" items={post.categories} type="tag" />
         ) : null}
         {post.geography != null ? (
-          <List items={post.geography} type="tag" />
+          <List urlSlug="/reads/geography/" items={post.geography} type="tag" />
         ) : null}
         {post.period != null ? (
-          <List
-            url={`/reads/tags/${post.period}`}
-            items={post.period}
-            type="tag"
-          />
+          <List urlSlug="/reads/period/" items={post.period} type="tag" />
         ) : null}
-        {post.genre != null ? <List items={post.genre} type="tag" /> : null}
+        {post.genre != null ? (
+          <List urlSlug="/reads/genre/" items={post.genre} type="tag" />
+        ) : null}
         {post.sport != null ? (
           <List urlSlug="/reads/sport/" items={post.sport} type="tag" />
         ) : null}

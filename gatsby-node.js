@@ -184,10 +184,13 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   postTypesList.forEach(postTypeItem => {
-    const tagSet = new Set();
-    const sportSet = new Set();
-    const periodSet = new Set();
     const categorySet = new Set();
+    const geographySet = new Set();
+    const genreSet = new Set();
+    const periodSet = new Set();
+    // const periodDetailSet = new Set();
+    const sportSet = new Set();
+    const tagSet = new Set();
 
     const posts = queryResults.data[postTypeItem].edges;
     // Sort posts
@@ -239,40 +242,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
     // Post page creating
     posts.forEach((edge, index) => {
-      // Generate a list of tags
-      if (edge.node.frontmatter.tags) {
-        const { postType } = edge.node.fields;
-        edge.node.frontmatter.tags.forEach(tag => {
-          const tagObj = {
-            tag,
-            postType
-          };
-          tagSet.add(tagObj);
-        });
-      }
-
-      if (edge.node.frontmatter.sport) {
-        const { postType } = edge.node.fields;
-        edge.node.frontmatter.sport.forEach(sport => {
-          const sportObj = {
-            sport,
-            postType
-          };
-          sportSet.add(sportObj);
-        });
-      }
-
-      if (edge.node.frontmatter.period) {
-        const { postType } = edge.node.fields;
-        edge.node.frontmatter.period.forEach(period => {
-          const periodObj = {
-            period,
-            postType
-          };
-          periodSet.add(periodObj);
-        });
-      }
-
       // Generate a list of categories
       if (edge.node.frontmatter.categories) {
         const { postType } = edge.node.fields;
@@ -282,6 +251,79 @@ exports.createPages = async ({ graphql, actions }) => {
             postType
           };
           categorySet.add(categoryObj);
+        });
+      }
+
+      // Generate a list of different kinds of tags
+      if (edge.node.frontmatter.geography) {
+        const { postType } = edge.node.fields;
+        edge.node.frontmatter.geography.forEach(geography => {
+          const geographyObj = {
+            geography,
+            postType,
+            tagType: "geographyTags"
+          };
+          geographySet.add(geographyObj);
+        });
+      }
+
+      if (edge.node.frontmatter.period) {
+        const { postType } = edge.node.fields;
+        edge.node.frontmatter.period.forEach(period => {
+          const periodObj = {
+            period,
+            postType,
+            tagType: "periodTags"
+          };
+          periodSet.add(periodObj);
+        });
+      }
+
+      // if (edge.node.frontmatter.periodDetail) {
+      //   const { postType } = edge.node.fields;
+      //   edge.node.frontmatter.periodDetail.forEach(periodDetail => {
+      //     const periodDetailObj = {
+      //       periodDetail,
+      //       postType,
+      //       tagType: "periodDetailTags"
+      //     };
+      //     periodDetailSet.add(periodDetailObj);
+      //   });
+      // }
+
+      if (edge.node.frontmatter.genre) {
+        const { postType } = edge.node.fields;
+        edge.node.frontmatter.genre.forEach(genre => {
+          const genreObj = {
+            genre,
+            postType,
+            tagType: "genreTags"
+          };
+          genreSet.add(genreObj);
+        });
+      }
+
+      if (edge.node.frontmatter.sport) {
+        const { postType } = edge.node.fields;
+        edge.node.frontmatter.sport.forEach(sport => {
+          const sportObj = {
+            sport,
+            postType,
+            tagType: "sportTags"
+          };
+          sportSet.add(sportObj);
+        });
+      }
+
+      if (edge.node.frontmatter.tags) {
+        const { postType } = edge.node.fields;
+        edge.node.frontmatter.tags.forEach(tag => {
+          const tagObj = {
+            tag,
+            postType,
+            tagType: "tags"
+          };
+          tagSet.add(tagObj);
         });
       }
 
@@ -314,31 +356,6 @@ exports.createPages = async ({ graphql, actions }) => {
       });
     });
 
-    //  Create tag pages
-    tagSet.forEach(tagObj => {
-      createPage({
-        path: `${tagObj.postType}/tag/${_.kebabCase(tagObj.tag)}/`,
-        component: tagPage,
-        context: tagObj
-      });
-    });
-
-    sportSet.forEach(sportObj => {
-      createPage({
-        path: `${sportObj.postType}/sport/${_.kebabCase(sportObj.sport)}/`,
-        component: sportPage,
-        context: sportObj
-      });
-    });
-
-    periodSet.forEach(periodObj => {
-      createPage({
-        path: `${periodObj.postType}/period/${_.kebabCase(periodObj.period)}/`,
-        component: sportPage,
-        context: periodObj
-      });
-    });
-
     // Create category pages
     categorySet.forEach(categoryObj => {
       createPage({
@@ -347,6 +364,59 @@ exports.createPages = async ({ graphql, actions }) => {
         )}/`,
         component: categoryPage,
         context: categoryObj
+      });
+    });
+
+    //  Create tag pages
+
+    geographySet.forEach(geographyObj => {
+      createPage({
+        path: `${geographyObj.postType}/geography/${_.kebabCase(
+          geographyObj.geography
+        )}/`,
+        component: tagPage,
+        context: geographyObj
+      });
+    });
+
+    periodSet.forEach(periodObj => {
+      createPage({
+        path: `${periodObj.postType}/period/${_.kebabCase(periodObj.period)}/`,
+        component: tagPage,
+        context: periodObj
+      });
+    });
+
+    // periodDetailSet.forEach(periodDetailObj => {
+    //   createPage({
+    //     path: `${periodDetailObj.postType}/periodDetail/${_.kebabCase(
+    //       periodDetailObj.periodDetail
+    //     )}/`,
+    //     component: tagPage,
+    //     context: periodDetailObj
+    //   });
+    // });
+
+    genreSet.forEach(genreObj => {
+      createPage({
+        path: `${genreObj.postType}/genre/${_.kebabCase(genreObj.genre)}/`,
+        component: tagPage,
+        context: genreObj
+      });
+    });
+
+    sportSet.forEach(sportObj => {
+      createPage({
+        path: `${sportObj.postType}/sport/${_.kebabCase(sportObj.sport)}/`,
+        component: tagPage,
+        context: sportObj
+      });
+    });
+    tagSet.forEach(tagObj => {
+      createPage({
+        path: `${tagObj.postType}/tag/${_.kebabCase(tagObj.tag)}/`,
+        component: tagPage,
+        context: tagObj
       });
     });
   });

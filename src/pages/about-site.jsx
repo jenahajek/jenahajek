@@ -98,6 +98,27 @@ class AboutPage extends Component {
                 </li>
                 <li>&hellip; a opravil nějaké drobnosti</li>
               </ul>
+
+              <h3>27. 09. 2020</h3>
+              <ul>
+                <li>
+                  Generování všech stránek s knihami a podpůrnými stránkami
+                  trvá, protože už jich jsou stovky. Abych nestrávil zbytek
+                  mládí koukáním na build, připravil jsem si menší set knih a
+                  při vývoji pracuju jen s tím. Vypomohl jsem si envirnoment
+                  proměnnými.
+                </li>
+                <li>
+                  Odbavil jsem největší nedostatky responzivního zobrazení.
+                  Pořád je tam hodně ke zlepšení, ale to nejpodstatnější je
+                  podchycené.
+                </li>
+                <li>
+                  Změnil jsem font, ale nechal jsem stále systémový, který
+                  netřeba stahovat.
+                </li>
+                <li>Přidal jsem fallback pro případ chybějící obálky knížky</li>
+              </ul>
             </div>
           </div>
         </div>

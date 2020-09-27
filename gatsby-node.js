@@ -82,7 +82,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const postTemplate = path.resolve("src/templates/post.jsx");
   const bookTemplate = path.resolve("src/templates/post-book.jsx");
   const tagPage = path.resolve("src/templates/tag.jsx");
-  const sportPage = path.resolve("src/templates/sport.jsx");
   const categoryPage = path.resolve("src/templates/category.jsx");
   const listingPage = path.resolve("./src/templates/listing.jsx");
   // const landingPage = path.resolve("./src/templates/landing.jsx");
@@ -114,7 +113,9 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
       booksQuery: allMdx(
-        filter: { fileAbsolutePath: { regex: "/(/content/books)/.*.mdx$/" } }
+        filter: {
+          fileAbsolutePath: { regex: "/(/content/books(-dev)?)/.*.mdx$/" }
+        }
       ) {
         edges {
           node {

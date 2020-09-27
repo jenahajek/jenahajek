@@ -3,6 +3,12 @@ const path = require("path");
 const globImporter = require("node-sass-glob-importer");
 const config = require("./data/SiteConfig");
 
+const { NODE_ENV } = process.env;
+
+const envBooks = env => {
+  return env === "production" ? "books" : "books-dev";
+};
+
 module.exports = {
   pathPrefix: config.pathPrefix === "" ? "/" : config.pathPrefix,
   siteMetadata: {
@@ -56,7 +62,7 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "books",
-        path: `${__dirname}/content/books`
+        path: `${__dirname}/content/${envBooks(NODE_ENV)}`
       }
     },
     // {

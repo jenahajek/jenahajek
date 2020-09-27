@@ -12,7 +12,7 @@ class IndexPage extends Component {
       <Layout>
         <Helmet title={`${config.siteTitle}`} />
 
-        <div className="temp-holder-center">
+        <div className="temp-holder-center row">
           <AvatarImage />
           <Introduction title="Ahoj, jmenuju se Jéňa Hájek">
             <p>

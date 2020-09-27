@@ -3,6 +3,7 @@
   grid-template-rows: repeat(auto-fill, minmax(0, 1fr)); // todo
   display: grid;
   flex-wrap: wrap;
+  margin: 0 -0.5em; // pozor, spjate s book=preview
 
   @include respond-to(xs) {
     grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));

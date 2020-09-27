@@ -1,37 +1,42 @@
 .book-detail {
   grid-template-columns: auto;
-  grid-template-rows: auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto;
   grid-template-areas:
     "book-cover"
     "book-title"
-    "book-meta"
-    "book-content";
+    "book-author"
+    "book-content"
+    "book-meta";
   display: grid;
   // todo 1: article mixin
   // todo 2: asi globalni pattern
   margin: 0 auto; // 1
-  padding: $spacing-md; // 2
   max-width: 40em; // 1; about 80 chars
 
   @include respond-to(book-xs) {
     grid-template-columns: minmax(7em, 8em) 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: 1fr min-content auto auto;
     grid-template-areas:
       "book-cover book-title"
-      "book-meta book-meta"
-      "book-content book-content";
+      "book-cover book-author"
+      "book-content book-content"
+      "book-meta book-meta";
   }
 
   @include respond-to(md) {
-    grid-template-columns: minmax(12em, 16em) minmax(7em, 8em) 1fr;
-    grid-template-rows: auto auto 1fr;
+    grid-template-columns: minmax(12em, 16em) 1fr;
+    grid-template-rows: auto auto auto 1fr;
     grid-template-areas:
-      ". book-title book-title"
-      "book-cover book-content book-content"
-      "book-meta  book-content book-content";
+      ". book-title"
+      "book-cover book-content"
+      "book-author   book-content"
+      "book-meta   book-content";
     align-items: start;
     max-width: 71em; // 1; about 80 chars + book on the side
-    grid-column-gap: 1em; // todo
+    grid-column-gap: 2em; // todo
+  }
+  @include respond-to(lg) {
+    grid-column-gap: 3em; // todo
   }
 }
 
@@ -49,7 +54,8 @@
 .book-detail__title {
   @include type-h1;
   grid-area: book-title;
-  margin-bottom: $type-space;
+  margin-top: 0;
+  margin-bottom: 0;
 
   @include respond-to(book-xs) {
     align-self: end;
@@ -57,8 +63,22 @@
   }
 
   @include respond-to(md) {
-    margin-top: $spacing-xl;
+    // margin-top: $spacing-xl;
+    margin-bottom: $type-space;
     margin-left: 0;
+  }
+}
+
+.book-detail__author {
+  grid-area: book-author;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--c-border-l2);
+  padding-bottom: 1rem;
+
+  @include respond-to(book-xs) {
+    align-self: end;
+    margin-bottom: $type-space;
+    margin-left: 1em; // todo
   }
 }
 

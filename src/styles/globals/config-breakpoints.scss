@@ -7,6 +7,7 @@
 // - there are situation where you need reversed media query. You can pass argument to the mixin to do that.
 
 $breakpoints: (
+  "site-nav-sm": 25em,
   "xs": 25em,
   "book-xs": 30em,
   "sm": 40em,

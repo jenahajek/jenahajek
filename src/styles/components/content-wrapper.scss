@@ -4,5 +4,12 @@
 //   max-width: 1120px;
 // }
 .content-wrapper {
-  padding: 6em 0 9em;
+  padding: 1.5em 0 3em;
+
+  @include respond-to(md) {
+    padding: 3em 0 4.5em;
+  }
+  @include respond-to(lg) {
+    padding: 6em 0 9em;
+  }
 }

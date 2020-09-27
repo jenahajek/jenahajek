@@ -1,15 +1,31 @@
 .post-nav {
   @include type-scale-0;
-  display: flex;
-  justify-content: space-between;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 100%));
+  grid-template-rows: repeat(auto-fill, minmax(0, 1fr)); // todo
+  display: grid;
+  flex-wrap: wrap;
+  // display: flex;
+  // justify-content: space-between;
   border: solid var(--c-border-l2);
   border-width: 1px 0;
+  @include respond-to(sm) {
+    grid-template-columns: repeat(auto-fill, minmax(6rem, 33%));
+  }
 }
 
 .post-nav__link {
   display: block;
   flex: 1;
-  padding: $spacing-xl;
+  padding: $spacing-sm;
+  @include respond-to(sm) {
+    padding: $spacing-md;
+  }
+  @include respond-to(md) {
+    padding: $spacing-lg;
+  }
+  @include respond-to(lg) {
+    padding: $spacing-xl;
+  }
   &:hover,
   &:focus {
     background: var(--c-background-l1);
@@ -17,7 +33,13 @@
 }
 
 .post-nav__link--next {
-  border-right: 1px solid var(--c-border-l2);
+  border-bottom: 1px solid var(--c-border-l2);
+  text-align: center;
+  @include respond-to(sm) {
+    border-right: 1px solid var(--c-border-l2);
+    border-bottom: none;
+    text-align: left;
+  }
 }
 
 .post-nav__link--back {
@@ -25,6 +47,11 @@
 }
 
 .post-nav__link--prev {
-  border-left: 1px solid var(--c-border-l2);
-  text-align: right;
+  border-top: 1px solid var(--c-border-l2);
+  text-align: center;
+  @include respond-to(sm) {
+    border-top: none;
+    border-left: 1px solid var(--c-border-l2);
+    text-align: right;
+  }
 }

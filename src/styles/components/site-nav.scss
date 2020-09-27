@@ -5,12 +5,23 @@
 
 .site-nav__list {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
+
+  @include respond-to(site-nav-sm) {
+    flex: 1 0 auto;
+    flex-wrap: no-wrap;
+  }
 }
 
 .site-nav__item {
   &:first-child {
+    flex: 1 0 100%;
     margin-right: auto;
+
+    @include respond-to(site-nav-sm) {
+      flex: 1 0 auto;
+    }
   }
 }
 

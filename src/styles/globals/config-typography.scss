@@ -153,18 +153,21 @@ $type-space-guidelines: 1.5em; // in ems only for guidelines
 @mixin type-h0 {
   @include type-scale-6;
   margin-bottom: $type-space;
+  font-weight: bold;
   font-variation-settings: "wght" 700;
 }
 
 @mixin type-h1 {
   @include type-scale-5;
   margin-bottom: $type-space;
+  font-weight: bold;
   font-variation-settings: "wght" 700;
 }
 
 @mixin type-h2 {
   @include type-scale-4;
   margin-bottom: $type-space;
+  font-weight: bold;
   // margin: $spacing-lg 0 $spacing-xs; // rem
   font-variation-settings: "wght" 700;
 
@@ -176,6 +179,7 @@ $type-space-guidelines: 1.5em; // in ems only for guidelines
 @mixin type-h3 {
   @include type-scale-3;
   margin-bottom: $type-space;
+  font-weight: bold;
   // margin: $spacing-lg 0 $spacing-xs; // rem
   font-variation-settings: "wght" 300;
 
@@ -249,7 +253,7 @@ $type-space-guidelines: 1.5em; // in ems only for guidelines
 
 @mixin type-author {
   @include type-scale--1;
-  margin-bottom: $type-space;
+  margin-bottom: 0;
   font-variation-settings: "wght" 500;
 }
 

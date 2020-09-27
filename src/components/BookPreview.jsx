@@ -3,7 +3,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import Image from "gatsby-image";
-// import BookCoverFallback from "./BookCoverFallback";
+import BookCoverFallback from "./BookCoverFallback";
 
 const BookPreview = ({ post }) => {
   return (
@@ -23,8 +23,7 @@ const BookPreview = ({ post }) => {
             className="book-preview__thumbnail"
           />
         ) : (
-          // <BookCoverFallback title={post.title} />
-          <p>cover chybi</p>
+          <BookCoverFallback title={post.title} />
         )}
         <div className="book-preview__desc">
           <h2 className="book-preview__title">{post.title}</h2>

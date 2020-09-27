@@ -34,7 +34,6 @@ const BookDetail = ({ post, children }) => {
               />
             </span>
           ) : null}
-          {/* <MDXRenderer>{post.body}</MDXRenderer> */}
           {children}
         </div>
         <div className="book-detail__author">

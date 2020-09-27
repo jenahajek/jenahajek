@@ -9,7 +9,7 @@
   border: solid var(--c-border-l2);
   border-width: 1px 0;
   @include respond-to(sm) {
-    grid-template-columns: repeat(auto-fill, minmax(6rem, 33%));
+    grid-template-columns: repeat(auto-fill, minmax(6rem, 33.33%));
   }
 }
 

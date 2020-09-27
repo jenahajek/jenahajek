@@ -247,7 +247,7 @@ $type-space-guidelines: 1.5em; // in ems only for guidelines
   font-variation-settings: "wght" 380;
 
   @include respond-to(md) {
-    font-variation-settings: "wght" 250;
+    font-variation-settings: "wght" 170;
   }
 }
 

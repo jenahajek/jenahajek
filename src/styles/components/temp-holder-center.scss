@@ -2,9 +2,13 @@
   display: flex;
   // min-height: 100vh;
   position: relative;
-  top: -3em;
+  top: 2em;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   margin: auto;
+
+  @include respond-to(md) {
+    top: -3em;
+  }
 }

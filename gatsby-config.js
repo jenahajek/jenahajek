@@ -9,6 +9,8 @@ const envBooks = env => {
   return env === "production" ? "books" : "books-dev";
 };
 
+console.log(`Using ${NODE_ENV} envirionment settings.`);
+
 module.exports = {
   pathPrefix: config.pathPrefix === "" ? "/" : config.pathPrefix,
   siteMetadata: {

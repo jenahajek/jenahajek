@@ -16,6 +16,7 @@
     "lint:js": "eslint --ext .js,.jsx .",
     "lint:styles": "prettier-stylelint --write 'src/**/*.{css,scss}'",
     "write-good": "write-good $(glob 'content/posts/**/*.md')",
+    "format:md": "prettier 'content/**/*.{md,mdx}' --write",
     "format:js": "prettier '**/*.{js,jsx}' --write",
     "format:styles": "prettier '**/*.{css,scss}' --write"
   },

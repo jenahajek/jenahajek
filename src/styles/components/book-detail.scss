@@ -80,6 +80,9 @@
     margin-bottom: $type-space;
     margin-left: 1em; // todo
   }
+  @include respond-to(md) {
+    margin-left: 0;
+  }
 }
 
 .book-detail__content {

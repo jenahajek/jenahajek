@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import Image from "gatsby-image";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-// import BookCoverFallback from "../components/BookCoverFallback";
+import BookCoverFallback from "./BookCoverFallback";
 import List from "./List";
 
 const BookDetail = ({ post, children }) => {
@@ -16,11 +16,7 @@ const BookDetail = ({ post, children }) => {
             className="book-detail__cover"
           />
         ) : (
-          // <BookCoverFallback
-          //   title={post.title}
-          //   modifier="book-detail__cover"
-          // />
-          <p>book cover fallback</p>
+          <BookCoverFallback title={post.title} modifier="book-detail__cover" />
         )}
         <h1 className="book-detail__title">{post.title}</h1>
         <div className="book-detail__content user-content">

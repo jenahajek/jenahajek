@@ -1,0 +1,19 @@
+.accordion {
+  $s: ".accordion";
+
+  &__toggle {
+    @include button-reset;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__content {
+    display: none;
+
+    #{$s}.is-open & {
+      display: block;
+    }
+  }
+}

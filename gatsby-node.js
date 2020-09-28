@@ -84,6 +84,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagPage = path.resolve("src/templates/tag.jsx");
   const categoryPage = path.resolve("src/templates/category.jsx");
   const listingPage = path.resolve("./src/templates/listing.jsx");
+  const listingBooksPage = path.resolve("./src/templates/listing-books.jsx");
   // const landingPage = path.resolve("./src/templates/landing.jsx");
 
   // Get a full list of markdown posts
@@ -222,7 +223,7 @@ exports.createPages = async ({ graphql, actions }) => {
         createPage({
           path:
             pageNum === 0 ? `/${postType}/` : `/${postType}/${pageNum + 1}/`,
-          component: listingPage,
+          component: postType === "reads" ? listingBooksPage : listingPage,
           context: {
             postType,
             limit: postsPerPage,

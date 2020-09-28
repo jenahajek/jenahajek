@@ -1,0 +1,335 @@
+$timing-bounce: cubic-bezier(0.22, 0.68, 0, 1.71);
+
+$color-u-white: #fff;
+$color-u-primary: $color-primary;
+$color-text: #fff;
+$color-text-subtle: #bbb;
+$color-f-input-disabled-bg: #555;
+$color-f-input-disabled-bd: #444;
+$color-f-input-err-bd: red;
+// ==========================================================================
+// Lokalni promenne
+// ==========================================================================
+$spacing-checkbox-mb: 10px;
+$spacing-checkbox-gap: 8px; // between checkbox and label
+$spacing-checkbox-tooltip-gap: 6px; // between checkbox and label
+$size-checkbox: 18px;
+
+$spacing-checkbox-label-padding: 0;
+$spacing-checkbox-note-gap: 10px;
+$spacing-checkbox-inline: 20px;
+
+$color-checkbox-bg: $color-u-white;
+$color-checkbox-text: $color-u-primary;
+$color-checkbox-bd: $color-text-subtle; // well
+$color-checkbox-bd-hover: $color-u-primary;
+$color-checkbox-bd-focus: $color-u-primary;
+$color-checkbox-bd-active: $color-u-primary;
+$color-checkbox-icon: $color-u-primary;
+
+$color-checkbox-checked-bg: $color-u-primary;
+$color-checkbox-checked-bd: $color-u-primary;
+$color-checkbox-checked-tick: #111;
+$color-checkbox-checked-indicator: $color-u-primary;
+
+$color-checkbox-disabled-bd: $color-text-disabled;
+$color-checkbox-disabled-text: $color-text-disabled;
+$color-checkbox-disabled-indicator: $color-text-disabled;
+$color-checkbox-disabled-label: $color-text-disabled;
+$color-checkbox-disabled-icon: $color-text-disabled;
+$color-checkbox-disabled-bg: $color-f-input-disabled-bg;
+$color-checkbox-disabled-checked-bd: $color-f-input-disabled-bd;
+
+$color-checkbox-invalid-text: $color-text;
+$color-checkbox-invalid-bg: $color-f-input-err-bd;
+$color-checkbox-invalid-bd: $color-f-input-err-bd;
+$color-checkbox-invalid-bd-hover: $color-f-input-err-bd;
+$color-checkbox-invalid-bd-focus: $color-f-input-err-bd;
+$color-checkbox-invalid-bd-active: $color-f-input-err-bd;
+
+$radius-checkbox: 2px;
+
+// ==========================================================================
+// Styly
+// ==========================================================================
+.checkbox {
+  $s: ".checkbox";
+
+  @include type-scale--2;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  align-items: center;
+  z-index: 1;
+  margin-right: 10px; // todo
+  min-width: $size-checkbox;
+  min-height: $size-checkbox;
+  break-inside: avoid;
+
+  .fieldset & {
+    margin-bottom: $spacing-checkbox-mb;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding: 0 0 0 ($size-checkbox + $spacing-checkbox-gap);
+    min-height: $size-checkbox;
+
+    .menu__item & {
+      width: 100%;
+    }
+  }
+
+  &__input,
+  &__visual-input {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: ($size-checkbox / -2);
+    width: $size-checkbox;
+    height: $size-checkbox;
+  }
+
+  &__input {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  &__visual-input {
+    border: 1px solid currentColor;
+    border-radius: $radius-checkbox;
+    background: $color-checkbox-bg;
+    color: $color-checkbox-bd;
+    // #{$s}--required & {
+    // outline: $size-required-outline solid $color-input-required-bg;
+    // }
+    &::before {
+      // @include focus-circle(-8px, $color-f-input-bd);
+    }
+  }
+
+  &__tick {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(0.5);
+    transition: transform 0.4s $timing-bounce, visibility 400ms; // todo trans
+    visibility: hidden;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    color: $color-checkbox-checked-indicator;
+  }
+
+  &__tick-determinate,
+  &__tick-indeterminate {
+    transition: stroke-dashoffset 200ms;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+  }
+
+  &__tick-determinate {
+    stroke-dasharray: 17 20;
+    stroke-dashoffset: 20;
+  }
+
+  &__tick-indeterminate {
+    display: none;
+    stroke-dasharray: 12 13;
+    stroke-dashoffset: 13;
+  }
+
+  &__label-wrapper {
+    display: inline-block;
+    padding: $spacing-checkbox-label-padding;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &::before {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      content: "";
+    }
+  }
+
+  &__label-text {
+    font-variation-settings: "wght" 700;
+  }
+
+  &__tooltip {
+    margin-left: $spacing-checkbox-tooltip-gap;
+  }
+
+  &__note.note {
+    margin-top: $spacing-checkbox-note-gap;
+    padding-left: ($size-checkbox + $spacing-checkbox-gap);
+    // #{$s}--required + & {
+    // 	padding-left: ($size-checkbox + $spacing-checkbox-gap + $size-required-outline);
+    // }
+  }
+  // Links in label or additional
+  a {
+    position: relative;
+    z-index: 1;
+  }
+
+  // ==========================================================================
+  // Modifications
+  // ==========================================================================
+  &--inline {
+    display: inline-block;
+    margin-right: $spacing-checkbox-inline;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  // &--required {
+  // @include required-checkbox-radio;
+  // }
+  // &--no-label &__inner {
+  // 	padding: 0;
+  // }
+
+  // ==========================================================================
+  // States
+  // ==========================================================================
+
+  // Checked
+  // --------------------------------------------------------------------------
+  &__input:checked ~ &__visual-input {
+    border-color: $color-checkbox-checked-bd;
+    background-color: $color-checkbox-checked-bg;
+  }
+
+  &__input:checked ~ * > &__tick {
+    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
+    color: $color-checkbox-checked-tick;
+  }
+
+  &__input:checked ~ * > svg > &__tick-determinate {
+    stroke-dashoffset: 0;
+  }
+
+  &__input:indeterminate ~ * > &__tick {
+    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__input:indeterminate ~ * > svg > &__tick-determinate {
+    display: none;
+  }
+
+  &__input:indeterminate ~ * > svg > &__tick-indeterminate {
+    display: block;
+    stroke-dashoffset: 0;
+  }
+
+  // Disabled
+  // --------------------------------------------------------------------------
+  &__input:disabled ~ &__visual-input {
+    border-color: $color-checkbox-disabled-bd;
+    background: $color-checkbox-disabled-bg;
+    color: $color-checkbox-disabled-text;
+
+    @media screen and (-ms-high-contrast: active) {
+      border-style: dotted;
+    }
+  }
+
+  &__input:disabled ~ * &__label {
+    color: $color-checkbox-disabled-label;
+  }
+
+  &__input:disabled ~ * > &__tick {
+    color: $color-checkbox-disabled-indicator;
+  }
+
+  &__input:disabled ~ &__icon {
+    color: $color-checkbox-disabled-icon;
+  }
+
+  // Invalid
+  // --------------------------------------------------------------------------
+  &__input[aria-invalid="true"] ~ &__visual-input {
+    border-color: $color-checkbox-invalid-bd;
+
+    &::before {
+      background-color: $color-checkbox-invalid-bg;
+    }
+  }
+
+  &__input[aria-invalid="true"]:checked ~ &__visual-input {
+    background-color: $color-checkbox-invalid-bg;
+  }
+
+  &__input[aria-invalid="true"] ~ * > &__tick {
+    border-color: $color-checkbox-invalid-bd;
+  }
+
+  &__input[aria-invalid="true"] ~ &__label-wrapper {
+    color: $color-checkbox-invalid-text;
+  }
+
+  &__input[aria-invalid="true"]:not(:disabled):hover ~ &__visual-input {
+    border-color: $color-checkbox-invalid-bd-hover;
+  }
+
+  &__input[aria-invalid="true"]:not(:disabled):focus ~ &__visual-input {
+    border-color: $color-checkbox-invalid-bd-focus;
+  }
+
+  &__input[aria-invalid="true"]:not(:disabled):active ~ &__visual-input {
+    border-color: $color-checkbox-invalid-bd-active;
+  }
+
+  // Hover
+  // --------------------------------------------------------------------------
+  &__input:not(:disabled):hover ~ &__visual-input {
+    border-color: $color-checkbox-bd-hover;
+  }
+
+  // Focus
+  // --------------------------------------------------------------------------
+  &__input:not(:disabled):focus ~ &__visual-input {
+    outline: 3px solid transparent; // MS high contrast mode
+    border-color: $color-checkbox-bd-focus;
+
+    &::before {
+      transform: scale(1);
+      opacity: 0.2;
+    }
+  }
+
+  // Active
+  // --------------------------------------------------------------------------
+  &__input:not(:disabled):active ~ &__visual-input {
+    border-color: $color-checkbox-bd-active;
+
+    &::before {
+      transform: scale(1.1);
+      opacity: 0.2;
+    }
+  }
+}

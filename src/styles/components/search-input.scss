@@ -1,0 +1,14 @@
+.search-input {
+  @include type-scale--1;
+  display: block;
+  border: 0;
+  border-bottom: 1px solid var(--c-border-l2);
+  background: transparent;
+  padding: 10px 0 8px;
+  width: 100%;
+  color: var(--c-text);
+
+  &:focus {
+    outline: 0;
+  }
+}

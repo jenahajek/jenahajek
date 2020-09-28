@@ -1,0 +1,35 @@
+.listing-books-container {
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "filter"
+    "content";
+  display: grid;
+  min-height: calc(100vh - 60px); // temporary hack
+
+  @include respond-to(md) {
+    grid-template-columns: auto min-content;
+    grid-template-rows: 100%;
+    grid-template-areas: "content filter";
+  }
+
+  .books-container {
+    grid-area: content;
+  }
+  .filter {
+    grid-area: filter;
+    border-top: 1px solid var(--c-border-l2);
+
+    @include respond-to(md) {
+      border-top: 0;
+    }
+  }
+  // align-items: center;
+  // flex-direction: column;
+  // justify-content: space-between;
+  // margin-right: auto;
+  // margin-left: auto;
+
+  // width: 100%;
+  // min-width: 60%;
+  // min-height: 100%;
+}

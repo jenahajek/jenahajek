@@ -1,0 +1,210 @@
+.filter {
+  $s: ".filter";
+  grid-area: "book-filter";
+  position: relative;
+  top: 0;
+  bottom: 0;
+  order: -1;
+  transition: width 0.2s ease-in-out; // todo
+  // position: fixed;
+  // top: 0;
+  // bottom: 0;
+  // left: 0;
+  z-index: 1001;
+  z-index: layer(site-menu-toggle);
+  margin: 0;
+  border-right: 1px solid var(--c-border-l2);
+  border-bottom: 0;
+  background-color: var(--c-background-l0);
+  // background: rgba(0, 0, 0, 0.7);
+  padding: 0;
+  // position: fixed;
+  padding-top: 60px;
+  width: 0;
+
+  &__inner {
+    height: 100%;
+    overflow: auto;
+  }
+
+  &__toggle {
+    display: flex;
+    position: fixed;
+    top: 50px;
+    right: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    // border-bottom: 1px solid var(--c-border-l2);
+    border-top: var(--s-border-width) solid var(--c-border-l2);
+    border-bottom: var(--s-border-width) solid var(--c-border-l2);
+    // background-color: transparent;
+    // background-position: center left 18px;
+    // background-repeat: no-repeat;
+    // background-size: 32px 32px;
+    background-color: var(--c-background-l0);
+    width: 100%;
+    min-width: 100px;
+    height: 60px;
+    fill: var(--c-text);
+
+    @include respond-to(md) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: auto;
+      left: auto;
+      border-top: 0;
+    }
+
+    .filter.is-open & {
+      position: absolute;
+      top: 0;
+      bottom: auto;
+      border-top: 0;
+    }
+
+    .filter:not(.is-open) & {
+      border-left: var(--s-border-width) solid var(--c-border-l2);
+    }
+
+    &:hover {
+      background: var(--c-background-l2);
+    }
+
+    &:focus {
+      outline: none; // todo focus
+    }
+  }
+
+  &__icon {
+    padding: 10px;
+    width: 52px;
+    height: 52px;
+
+    &--open {
+      display: none;
+    }
+  }
+
+  &.is-closed {
+    transition: width 0.2s ease-in-out 0.2s; // todo
+
+    #{$s}__group {
+      display: none;
+      transition: opacity 0.2s ease-in-out; // todo
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #{$s}__icon--open {
+      display: block;
+    }
+
+    #{$s}__icon--close {
+      display: none;
+    }
+
+    #{$s}__group-wrapper {
+      display: none;
+    }
+  }
+
+  &.is-open {
+    width: 100%;
+
+    @include respond-to(md) {
+      border-left: 1px solid var(--c-border-l2);
+      width: 300px;
+    }
+
+    #{$s}__toggle {
+    }
+
+    #{$s}__group-wrapper {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  &__group {
+    display: flex;
+    flex-flow: column nowrap;
+    transition: all 0.3s, border 0s, opacity 0.2s ease-in-out 0.2s; // todo transition
+    margin: 0;
+    border: solid var(--c-border-l2);
+    border-width: 0 0 1px 0;
+    padding: 0 0 5px;
+
+    &:hover,
+    &:focus {
+      background-color: var(--c-background-l1);
+    }
+
+    &.is-active {
+      background-color: var(--c-background-l2);
+
+      &.is-open {
+        transition: background-color 0s;
+        background-color: transparent;
+      }
+    }
+
+    .search-input__container {
+      padding: 15px 15px 10px;
+    }
+  }
+
+  &__legend {
+    @include type-scale--2;
+    position: relative;
+    padding: 15px 15px 10px;
+    width: 100%;
+    text-transform: uppercase;
+    color: var(--c-text-subtle);
+    font-size: 14px;
+    font-variation-settings: "wght" 650;
+
+    &::before {
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transition: all 0.3s;
+      opacity: 0.5;
+      margin-top: -5px;
+      background-image: url("../images/triangle-down.svg");
+      background-size: contain;
+      width: 20px;
+      height: 20px;
+      content: "";
+
+      #{$s}__group.is-open & {
+        transform: rotate(-180deg);
+      }
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+
+    &.is-empty {
+      color: var(--c-text-disabled);
+    }
+  }
+
+  &__content {
+    padding: 0 15px 10px;
+  }
+}
+
+@include respond-to(md) {
+  .filter {
+    // bottom: 76px;
+
+    &__toggle {
+      //
+    }
+  }
+}

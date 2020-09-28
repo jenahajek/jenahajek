@@ -42,20 +42,12 @@ class Listing extends React.Component {
         <div className="listing-container">
           <Helmet title={config.siteTitle} />
           <SEO />
-          {postType === "reads" ? (
-            <>
-              <div className="books-container">
-                <BookListing postEdges={postEdges} />
-              </div>
-            </>
-          ) : (
-            <div className="row">
-              <div className="content-wrapper">
-                <h1>Frontend blog</h1>
-                <PostListing postEdges={postEdges} />
-              </div>
+          <div className="row">
+            <div className="content-wrapper">
+              <h1>Frontend blog</h1>
+              <PostListing postEdges={postEdges} />
             </div>
-          )}
+          </div>
           {this.renderPaging()}
         </div>
       </Layout>

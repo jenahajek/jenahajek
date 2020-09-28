@@ -54,6 +54,7 @@ $pink: hsl(311, 20%, 63%);
   --c-text: #{$white-94};
   --c-text-subtle: #{$white-88};
   --c-text-nonessential: #{$white-72};
+  --c-text-disabled: #{$gray-60};
   --c-text-shadow: #{$black-9};
   --c-selected: #{$yellow};
   --c-link: #{$blue-67};
@@ -78,6 +79,7 @@ $pink: hsl(311, 20%, 63%);
   --c-text: #{$gray-22};
   --c-text-subtle: #{$gray-60};
   --c-text-nonessential: #{$gray-28};
+  --c-text-disabled: #{$white-72};
   --c-text-shadow: #{$white-94};
   --c-selected: #{$red};
   --c-link: #{$blue-52};
@@ -102,7 +104,8 @@ $pink: hsl(311, 20%, 63%);
 }
 
 // Colors, which stays the same?
-// $color-primary: $blue-63;
-// $color-link: $color-primary;
-// $color-text-muted: #888;
-// $color-text-disabled: #666;
+// used for checkbox
+$color-primary: $blue-63;
+$color-link: $color-primary;
+$color-text-muted: #888;
+$color-text-disabled: #666;

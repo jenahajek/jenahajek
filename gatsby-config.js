@@ -29,6 +29,14 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-lodash",
     {
+      resolve: `gatsby-plugin-react-svg`,
+      options: {
+        rule: {
+          include: `${__dirname}/src/svg`
+        }
+      }
+    },
+    {
       resolve: "gatsby-image"
     },
     {

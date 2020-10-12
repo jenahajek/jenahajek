@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-const Accordion = ({ title, label, state, children }) => {
-  const [accordionState, setAccordionState] = useState("");
+const Accordion = ({ title, label, state, initialState, children }) => {
+  const [accordionState, setAccordionState] = useState(
+    initialState ? "is-open" : ""
+  );
   const [accordionIndicator, setAccordionIndicator] = useState("");
 
   const toggleAccordion = () => {
@@ -9,6 +11,7 @@ const Accordion = ({ title, label, state, children }) => {
     setAccordionIndicator(
       state.length === 0 || state === undefined ? "" : "is-active"
     );
+    console.log(state, "stejt");
   };
 
   return (
@@ -20,12 +23,12 @@ const Accordion = ({ title, label, state, children }) => {
         type="button"
         onClick={toggleAccordion}
         className={`filter__legend accordion__toggle ${
-          children.length ? "" : "is-empty"
+          children.length === 0 ? "is-empty" : ""
         }`}>
         {title}
       </button>
       <div className="filter__content accordion__content">
-        {children.length ? children : <p>-</p>}
+        {children.length === 0 ? <p>-</p> : children}
       </div>
     </div>
   );

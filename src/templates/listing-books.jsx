@@ -496,11 +496,19 @@ const ListingBook = () => {
         <SEO />
         <div className="books-container">
           {postGroups.map(postGroup => (
-            <BookListing
-              key={postGroup}
-              postGroup={postGroup}
-              postList={postList}
-            />
+            <>
+              <Accordion
+                title={postList[postGroup].label}
+                label=""
+                initialState={postGroup === "read" || "reading"}
+                state="">
+                <BookListing
+                  key={postGroup}
+                  postGroup={postGroup}
+                  postList={postList}
+                />
+              </Accordion>
+            </>
           ))}
         </div>
         <form className={`filter ${filterState}`}>
